@@ -66,7 +66,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Banner Church</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -80,7 +80,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Banner Legion</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -94,7 +94,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Banner Rebels</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -108,7 +108,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Banner Vau</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -228,19 +228,19 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Idle</GUIName>
+					<GUIName>Orbit Idle</GUIName>
 				</Item>
 				<Item>
 					<Index>1</Index>
-					<GUIName>Hover</GUIName>
+					<GUIName>Orbit Hover</GUIName>
 				</Item>
 				<Item>
 					<Index>2</Index>
-					<GUIName>Down</GUIName>
+					<GUIName>Orbit Down</GUIName>
 				</Item>
 				<Item>
 					<Index>3</Index>
-					<GUIName>Disabled</GUIName>
+					<GUIName>Orbit Disabled</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -255,19 +255,19 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Idle</GUIName>
+					<GUIName>Group Idle</GUIName>
 				</Item>
 				<Item>
 					<Index>1</Index>
-					<GUIName>Hover</GUIName>
+					<GUIName>Group Hover</GUIName>
 				</Item>
 				<Item>
 					<Index>2</Index>
-					<GUIName>Down</GUIName>
+					<GUIName>Group Down</GUIName>
 				</Item>
 				<Item>
 					<Index>3</Index>
-					<GUIName>Disabled</GUIName>
+					<GUIName>Group Disabled</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -276,9 +276,9 @@
 			<GUIName>EFSBUT5</GUIName>
 			<ItemDimensions Format="Rectangle">
 				<Width>41</Width>
-				<Height>15</Height>
+				<Height>14</Height>
 			</ItemDimensions>
-			<Notes>Some play button</Notes>
+			<Notes>Some sort of play button</Notes>
 			<Items>
 				<Item>
 					<Index>0</Index>
@@ -305,23 +305,23 @@
 				<Width>30</Width>
 				<Height>14</Height>
 			</ItemDimensions>
-			<Notes>Some sort of play button</Notes>
+			<Notes>View stack button</Notes>
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Idle</GUIName>
+					<GUIName>Stack Info Idle</GUIName>
 				</Item>
 				<Item>
 					<Index>1</Index>
-					<GUIName>Hover</GUIName>
+					<GUIName>Stack Info Hover</GUIName>
 				</Item>
 				<Item>
 					<Index>2</Index>
-					<GUIName>Down</GUIName>
+					<GUIName>Stack Info Down</GUIName>
 				</Item>
 				<Item>
 					<Index>3</Index>
-					<GUIName>Disabled</GUIName>
+					<GUIName>Stack Info Disabled</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -332,7 +332,7 @@
 				<Width>25</Width>
 				<Height>25</Height>
 			</ItemDimensions>
-			<Notes>Unknown</Notes>
+			<Notes>Red and Green buttons?</Notes>
 			<Items>
 				<Item>
 					<Index>0</Index>
@@ -355,19 +355,19 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Idle</GUIName>
+					<GUIName>Sentry Idle</GUIName>
 				</Item>
 				<Item>
 					<Index>1</Index>
-					<GUIName>Hover</GUIName>
+					<GUIName>Sentry Hover</GUIName>
 				</Item>
 				<Item>
 					<Index>2</Index>
-					<GUIName>Down</GUIName>
+					<GUIName>Sentry Down</GUIName>
 				</Item>
 				<Item>
 					<Index>3</Index>
-					<GUIName>Disabled</GUIName>
+					<GUIName>Sentry Disabled</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -382,19 +382,19 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Idle</GUIName>
+					<GUIName>Skip Idle</GUIName>
 				</Item>
 				<Item>
 					<Index>1</Index>
-					<GUIName>Hover</GUIName>
+					<GUIName>Skip Hover</GUIName>
 				</Item>
 				<Item>
 					<Index>2</Index>
-					<GUIName>Down</GUIName>
+					<GUIName>Skip Down</GUIName>
 				</Item>
 				<Item>
 					<Index>3</Index>
-					<GUIName>Disabled</GUIName>
+					<GUIName>Skip Disabled</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -409,19 +409,19 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Idle</GUIName>
+					<GUIName>Wait Idle</GUIName>
 				</Item>
 				<Item>
 					<Index>1</Index>
-					<GUIName>Hover</GUIName>
+					<GUIName>Wait Hover</GUIName>
 				</Item>
 				<Item>
 					<Index>2</Index>
-					<GUIName>Down</GUIName>
+					<GUIName>Wait Down</GUIName>
 				</Item>
 				<Item>
 					<Index>3</Index>
-					<GUIName>Disabled</GUIName>
+					<GUIName>Wait Disabled</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -436,19 +436,19 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Idle</GUIName>
+					<GUIName>Move Idle</GUIName>
 				</Item>
 				<Item>
 					<Index>1</Index>
-					<GUIName>Hover</GUIName>
+					<GUIName>Move Hover</GUIName>
 				</Item>
 				<Item>
 					<Index>2</Index>
-					<GUIName>Down</GUIName>
+					<GUIName>Move Down</GUIName>
 				</Item>
 				<Item>
 					<Index>3</Index>
-					<GUIName>Disabled</GUIName>
+					<GUIName>Move Disabled</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -516,27 +516,27 @@
 				<Width>15</Width>
 				<Height>13</Height>
 			</ItemDimensions>
-			<Notes>Hitpoint hearts</Notes>
+			<Notes>Loyalty icon</Notes>
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Zero HP</GUIName>
+					<GUIName>0% Loyalty</GUIName>
 				</Item>
 				<Item>
 					<Index>1</Index>
-					<GUIName>25%</GUIName>
+					<GUIName>25% Loyalty</GUIName>
 				</Item>
 				<Item>
 					<Index>2</Index>
-					<GUIName>50%</GUIName>
+					<GUIName>50% Loyalty</GUIName>
 				</Item>
 				<Item>
 					<Index>3</Index>
-					<GUIName>75%</GUIName>
+					<GUIName>75% Loyalty</GUIName>
 				</Item>
 				<Item>
 					<Index>4</Index>
-					<GUIName>Full HP</GUIName>
+					<GUIName>100% Loyalty</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -544,22 +544,22 @@
 			<FileName>EFSBUT16.BIN</FileName>
 			<GUIName>EFSBUT16</GUIName>
 			<ItemDimensions Format="Rectangle">
-				<Width>15</Width>
-				<Height>13</Height>
+				<Width>54</Width>
+				<Height>50</Height>
 			</ItemDimensions>
 			<Notes>End Turn Hourglass</Notes>
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Idle</GUIName>
+					<GUIName>End Turn Idle</GUIName>
 				</Item>
 				<Item>
 					<Index>1</Index>
-					<GUIName>Hover</GUIName>
+					<GUIName>End Turn Hover</GUIName>
 				</Item>
 				<Item>
 					<Index>2</Index>
-					<GUIName>Down</GUIName>
+					<GUIName>End Turn Down</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1511,7 +1511,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Imperial Eye Banner</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1568,22 +1568,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Flag</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>FLAG.BIN</FileName>
-			<GUIName>FLAG</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>40</Width>
-				<Height>40</Height>
-			</ItemDimensions>
-			<Notes>Combat surrender flag</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Flag</GUIName>
+					<GUIName>Surrender Flag</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1623,8 +1608,8 @@
 			</Items>
 		</Preset>
 		<Preset>
-			<FileName>FLEET100.BIN</FileName>
-			<GUIName>FLEET100</GUIName>
+			<FileName>FLET100.BIN</FileName>
+			<GUIName>FLET100</GUIName>
 			<ItemDimensions Format="Rectangle">
 				<Width>100</Width>
 				<Height>100</Height>
@@ -1644,11 +1629,11 @@
 				<Width>100</Width>
 				<Height>100</Height>
 			</ItemDimensions>
-			<Notes>LI-HALAN banner</Notes>
+			<Notes>Li-Halan banner</Notes>
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Li-Halan Banner</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1659,11 +1644,11 @@
 				<Width>100</Width>
 				<Height>100</Height>
 			</ItemDimensions>
-			<Notes>The HAZAT banner</Notes>
+			<Notes>The Hazat banner</Notes>
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Hazat Banner</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1674,11 +1659,11 @@
 				<Width>100</Width>
 				<Height>100</Height>
 			</ItemDimensions>
-			<Notes>DECADOS banner</Notes>
+			<Notes>Decados banner</Notes>
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Decados Banner</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1689,11 +1674,11 @@
 				<Width>100</Width>
 				<Height>100</Height>
 			</ItemDimensions>
-			<Notes>HAWKWOOD banner</Notes>
+			<Notes>Hawkwood banner</Notes>
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Hawkwood Banner</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1704,11 +1689,11 @@
 				<Width>100</Width>
 				<Height>100</Height>
 			</ItemDimensions>
-			<Notes>AL-MALIK banner</Notes>
+			<Notes>Al-Malik banner</Notes>
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Al-Malik Banner</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1762,7 +1747,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Computer</GUIName>
+					<GUIName>Computer player</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1777,7 +1762,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>brain</GUIName>
+					<GUIName>Human player</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1917,7 +1902,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Portrait</GUIName>
+					<GUIName>Leaguemeister Portrait</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1932,7 +1917,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Portrait</GUIName>
+					<GUIName>Advisor Portrait</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1947,7 +1932,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Portrait</GUIName>
+					<GUIName>Vau Portrait</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -1997,7 +1982,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Regency Banner</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -2058,7 +2043,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Skull</GUIName>
+					<GUIName>Combat Skull</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -2069,11 +2054,11 @@
 				<Width>100</Width>
 				<Height>100</Height>
 			</ItemDimensions>
-			<Notes>Garrison banner</Notes>
+			<Notes>Stigmata Garrison banner</Notes>
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Stigmata Banner</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -2123,7 +2108,7 @@
 			<Items>
 				<Item>
 					<Index>0</Index>
-					<GUIName>Banner</GUIName>
+					<GUIName>Symbiots Banner</GUIName>
 				</Item>
 			</Items>
 		</Preset>
@@ -5583,7 +5568,7 @@
 			<Items>
 				  <Item>
 				    <Index>0</Index>
-				    <GUIName>NOID</GUIName>
+				    <GUIName>Unknown</GUIName>
 				  </Item>
 			</Items>
 		</Preset>
@@ -5626,19 +5611,19 @@
         </Item>
         <Item>
           <Index>7</Index>
-          <GUIName>Move dot This turn</GUIName>
+          <GUIName>Move This turn</GUIName>
         </Item>
         <Item>
           <Index>8</Index>
-          <GUIName>Move dot Next turn</GUIName>
+          <GUIName>Move  Next turn</GUIName>
         </Item>
         <Item>
           <Index>9</Index>
-          <GUIName>Move cross This turn</GUIName>
+          <GUIName>Stop This turn</GUIName>
         </Item>
         <Item>
           <Index>10</Index>
-          <GUIName>Move cross Next turn</GUIName>
+          <GUIName>Stop Next turn</GUIName>
         </Item>
       </Items>
     </Preset>

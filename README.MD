@@ -1,6 +1,6 @@
 ## BIN Converter for Emperor of the Fading Suns
 
-This tool for modders of Emperor of the Fading Suns allows easy conversion to and from the ```.bin``` file format used by the game for storing graphical elements.
+This Windows tool for modders of Emperor of the Fading Suns allows easy conversion to and from the ```.bin``` file format used by the game for storing graphical elements.
 
 
 ---

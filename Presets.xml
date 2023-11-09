@@ -4,2138 +4,2196 @@
       The .BIN files store data for graphical elements such as banners, portraits, unit icons, tiles, animation frames etc...
       Each byte stores the color for one pixel, indexed against the game's 256 color palette.
       As the .BIN files themselves contain no data on how many elements are arrayed inside, nor how these elements or their pixels are laid out,
-      such information needs to be laid out here for the program to know how to read each file.
+      such information needs to be explicited here for the program to know how to read and slice up each file.
       
+      Preset:               Each preset is associated with a .BIN file. It contains information describing what graphical elements ('items') the file contain.     
       
-      FileName:             The name of the .BIN file. Used by the program to detect which preset to load when selecting a .BIN file.
-      GUIName:              Name of the Preset in the interface. Exported images will use this name. Also used by the program to detect which preset to laod when importing a .BMP file. 
-                              Do not use the + character or special cahracter forbidden in file names
+        .Id:                A unique two-digit alphanumerical identifier for the preset.
+                            This is used for naming the exported files, as well as selecting the right preset when importing .bmp files for conversion to .bin. 
+        .FileName:          The name of the .BIN file. Used by the program to automatically detect which preset to load when the user selects a .BIN file.
+        .GUIName:           The name of the preset in the interface. This will also show in the file name, so avoid characters forbidden by the Windows file system.
       
-      ItemDimensions
-        .Format:            Rectangle or Hexagon. If Rectangle, Width is assumed constant for each row of pixels. 
+      ItemDimensions        
+        .Format:            The shape of the elements stored in the .BIN file. Valid formats are Rectangle and Hexagon. 
+                              If Rectangle, Width is assumed constant for each row of pixels. 
                               For hexagonal items, the program uses a variable width (currently hardcoded).
-      ItemDimensions    
         .Width & .Height:   The dimensions in pixels of individual elements. All elements in a given file are assumed to have identical dimensions.
                               For rectangular items, as one pixel equals one byte in the file, the size of each element in bytes is simply Width * Height.
                             
                             As of v0.1.0, the dimensions for the hexagonal elements supported by the program (items in GLIMMER.BIN, EFSTILE*.BIN, STRUCT*.BIN)
-                              are hardcoded into the program. The width and height values provided here are ignored for these items (the xml elements are still required)
-                              
-                            There is very little reason to change the dimensions value provided here unless an update to the game changes them
+                              are hardcoded into the program. The width and height values provided here are ignored for these items (the xml elements are required nontheless) 
+                            There is very little reason to change the dimensions value provided here unless an (unlikely) update to the game changes the way it reads from the files
       
-      Item  
-          .Index:           The ordinal index (zero-based) of the item in the file. The element's byte offset in the file would therefore be
-                              index * width * height for rectangular items. 
+      Item                   
+        .Index:             A unique zero-based decimal ordinal for each item in the file. The graphical element's byte position in the file would therefore start at
+                              index * width * height for rectangular items. It would end at ((index+1) * width * height -1).
                               Hexagonal items are currently hardcoded at a length of 1520 bytes, the offset is therefore 1520 * index.
-        .GUIName:           Some arbitrary name given to the element. This will be used to name the exported image, and for file recognition when importing an image.
-                              Do not use the + character or special cahracter forbidden in file names
- 
+                            The decimal value of Index is suffixed to the preset identifier when naming an exported file  (leading zero added as needed).
+                              
+        .GUIName:           The name of the item in the interface. This may also show in the file name, so avoid characters forbidden by the Windows file system.
+                              
 -->
 <!-- 
       No support for these files: ( v0.1.0-beta 2023-10-12)
+        BORDER.BIN
         S_BORD.BIN
-        V_BORD.BIN      
+        V_BORD.BIN  
+        
 
 -->
-
 <Root>
-	<Presets>
-		<Preset>
-			<FileName>BANNERS.BIN</FileName>
-			<GUIName>BANNERS</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>120</Width>
-				<Height>123</Height>
-			</ItemDimensions>
-			<Notes />
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>BNRCHU.BIN</FileName>
-			<GUIName>BNRCHU</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Notes />
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Banner Church</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>BNRLEG.BIN</FileName>
-			<GUIName>BNRLEG</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Banner Legion</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>BNRREB.BIN</FileName>
-			<GUIName>BNRREB</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Banner Rebels</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>BNRVAU.BIN</FileName>
-			<GUIName>BNRVAU</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Banner Vau</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>CARGO.BIN</FileName>
-			<GUIName>CARGO</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>34</Width>
-				<Height>29</Height>
-			</ItemDimensions>
-			<Notes>Resources icons</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Food</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Energy</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Metals</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Trace</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>Exotics</GUIName>
-				</Item>
-				<Item>
-					<Index>5</Index>
-					<GUIName>Chemicals</GUIName>
-				</Item>
-				<Item>
-					<Index>6</Index>
-					<GUIName>Biochems</GUIName>
-				</Item>
-				<Item>
-					<Index>7</Index>
-					<GUIName>Electronics</GUIName>
-				</Item>
-				<Item>
-					<Index>8</Index>
-					<GUIName>Ceramsteel</GUIName>
-				</Item>
-				<Item>
-					<Index>9</Index>
-					<GUIName>Wetware</GUIName>
-				</Item>
-				<Item>
-					<Index>10</Index>
-					<GUIName>Monopols</GUIName>
-				</Item>
-				<Item>
-					<Index>11</Index>
-					<GUIName>Gems</GUIName>
-				</Item>
-				<Item>
-					<Index>12</Index>
-					<GUIName>Singularities</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT1.BIN</FileName>
-			<GUIName>EFSBUT1</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>27</Width>
-				<Height>27</Height>
-			</ItemDimensions>
-			<Notes>Diplomatic screen peace and war icons</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Peace Icon</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>War Icon</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT2.BIN</FileName>
-			<GUIName>EFSBUT2</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>23</Width>
-				<Height>23</Height>
-			</ItemDimensions>
-			<Notes>To glactic map button</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Idle</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Hover</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Down</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT3.BIN</FileName>
-			<GUIName>EFSBUT3</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>23</Width>
-				<Height>41</Height>
-			</ItemDimensions>
-			<Notes>Launch ship into orbit button</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Orbit Idle</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Orbit Hover</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Orbit Down</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Orbit Disabled</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT4.BIN</FileName>
-			<GUIName>EFSBUT4</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>30</Width>
-				<Height>14</Height>
-			</ItemDimensions>
-			<Notes>Group all button</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Group Idle</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Group Hover</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Group Down</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Group Disabled</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT5.BIN</FileName>
-			<GUIName>EFSBUT5</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>41</Width>
-				<Height>14</Height>
-			</ItemDimensions>
-			<Notes>Some sort of play button</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Idle</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Hover</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Down</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Disabled</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT6.BIN</FileName>
-			<GUIName>EFSBUT6</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>30</Width>
-				<Height>14</Height>
-			</ItemDimensions>
-			<Notes>View stack button</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Stack Info Idle</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Stack Info Hover</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Stack Info Down</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Stack Info Disabled</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT7.BIN</FileName>
-			<GUIName>EFSBUT7</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>25</Width>
-				<Height>25</Height>
-			</ItemDimensions>
-			<Notes>Red and Green buttons?</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Red button</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Green button</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT8.BIN</FileName>
-			<GUIName>EFSBUT8</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>25</Width>
-				<Height>25</Height>
-			</ItemDimensions>
-			<Notes>Sentry button</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Sentry Idle</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Sentry Hover</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Sentry Down</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Sentry Disabled</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT9.BIN</FileName>
-			<GUIName>EFSBUT9</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>25</Width>
-				<Height>25</Height>
-			</ItemDimensions>
-			<Notes>Skip unit's turn</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Skip Idle</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Skip Hover</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Skip Down</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Skip Disabled</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT10.BIN</FileName>
-			<GUIName>EFSBUT10</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>25</Width>
-				<Height>25</Height>
-			</ItemDimensions>
-			<Notes>Push unit to back of queue</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Wait Idle</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Wait Hover</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Wait Down</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Wait Disabled</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT11.BIN</FileName>
-			<GUIName>EFSBUT11</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>25</Width>
-				<Height>25</Height>
-			</ItemDimensions>
-			<Notes>Execute move order</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Move Idle</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Move Hover</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Move Down</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Move Disabled</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT12.BIN</FileName>
-			<GUIName>EFSBUT12</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>23</Width>
-				<Height>12</Height>
-			</ItemDimensions>
-			<Notes>Grey and gold imperial eagles</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Grey eagle</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Gold eagle</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT13.BIN</FileName>
-			<GUIName>EFSBUT13</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>15</Width>
-				<Height>13</Height>
-			</ItemDimensions>
-			<Notes>Red and Green hearts with + and -</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Red heart</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Green heart</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT14.BIN</FileName>
-			<GUIName>EFSBUT14</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>27</Width>
-				<Height>27</Height>
-			</ItemDimensions>
-			<Notes>Thumbs up and down</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Thumb up</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Thumb down</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT15.BIN</FileName>
-			<GUIName>EFSBUT15</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>15</Width>
-				<Height>13</Height>
-			</ItemDimensions>
-			<Notes>Loyalty icon</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>0% Loyalty</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>25% Loyalty</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>50% Loyalty</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>75% Loyalty</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>100% Loyalty</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSBUT16.BIN</FileName>
-			<GUIName>EFSBUT16</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>54</Width>
-				<Height>50</Height>
-			</ItemDimensions>
-			<Notes>End Turn Hourglass</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>End Turn Idle</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>End Turn Hover</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>End Turn Down</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSPLAN.BIN</FileName>
-			<GUIName>EFSPLAN</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>32</Width>
-				<Height>32</Height>
-			</ItemDimensions>
-			<Notes>Planet animations</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Planet 0 Frame 0</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Planet 0 Frame 1</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Planet 0 Frame 2</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Planet 0 Frame 3</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>Planet 0 Frame 4</GUIName>
-				</Item>
-				<Item>
-					<Index>5</Index>
-					<GUIName>Planet 0 Frame 5</GUIName>
-				</Item>
-				<Item>
-					<Index>6</Index>
-					<GUIName>Planet 0 Frame 6</GUIName>
-				</Item>
-				<Item>
-					<Index>7</Index>
-					<GUIName>Planet 0 Frame 7</GUIName>
-				</Item>
-				<Item>
-					<Index>8</Index>
-					<GUIName>Planet 0 Frame 8</GUIName>
-				</Item>
-				<Item>
-					<Index>9</Index>
-					<GUIName>Planet 1 Frame 9</GUIName>
-				</Item>
-				<Item>
-					<Index>10</Index>
-					<GUIName>Planet 1 Frame 10</GUIName>
-				</Item>
-				<Item>
-					<Index>11</Index>
-					<GUIName>Planet 1 Frame 11</GUIName>
-				</Item>
-				<Item>
-					<Index>12</Index>
-					<GUIName>Planet 1 Frame 12</GUIName>
-				</Item>
-				<Item>
-					<Index>13</Index>
-					<GUIName>Planet 1 Frame 13</GUIName>
-				</Item>
-				<Item>
-					<Index>14</Index>
-					<GUIName>Planet 1 Frame 14</GUIName>
-				</Item>
-				<Item>
-					<Index>15</Index>
-					<GUIName>Planet 1 Frame 15</GUIName>
-				</Item>
-				<Item>
-					<Index>16</Index>
-					<GUIName>Planet 1 Frame 0</GUIName>
-				</Item>
-				<Item>
-					<Index>17</Index>
-					<GUIName>Planet 1 Frame 1</GUIName>
-				</Item>
-				<Item>
-					<Index>18</Index>
-					<GUIName>Planet 1 Frame 2</GUIName>
-				</Item>
-				<Item>
-					<Index>19</Index>
-					<GUIName>Planet 1 Frame 3</GUIName>
-				</Item>
-				<Item>
-					<Index>20</Index>
-					<GUIName>Planet 1 Frame 4</GUIName>
-				</Item>
-				<Item>
-					<Index>21</Index>
-					<GUIName>Planet 1 Frame 5</GUIName>
-				</Item>
-				<Item>
-					<Index>22</Index>
-					<GUIName>Planet 1 Frame 6</GUIName>
-				</Item>
-				<Item>
-					<Index>23</Index>
-					<GUIName>Planet 1 Frame 7</GUIName>
-				</Item>
-				<Item>
-					<Index>24</Index>
-					<GUIName>Planet 2 Frame 8</GUIName>
-				</Item>
-				<Item>
-					<Index>25</Index>
-					<GUIName>Planet 2 Frame 9</GUIName>
-				</Item>
-				<Item>
-					<Index>26</Index>
-					<GUIName>Planet 2 Frame 10</GUIName>
-				</Item>
-				<Item>
-					<Index>27</Index>
-					<GUIName>Planet 2 Frame 11</GUIName>
-				</Item>
-				<Item>
-					<Index>28</Index>
-					<GUIName>Planet 2 Frame 12</GUIName>
-				</Item>
-				<Item>
-					<Index>29</Index>
-					<GUIName>Planet 2 Frame 13</GUIName>
-				</Item>
-				<Item>
-					<Index>30</Index>
-					<GUIName>Planet 2 Frame 14</GUIName>
-				</Item>
-				<Item>
-					<Index>31</Index>
-					<GUIName>Planet 2 Frame 15</GUIName>
-				</Item>
-				<Item>
-					<Index>32</Index>
-					<GUIName>Planet 2 Frame 0</GUIName>
-				</Item>
-				<Item>
-					<Index>33</Index>
-					<GUIName>Planet 2 Frame 1</GUIName>
-				</Item>
-				<Item>
-					<Index>34</Index>
-					<GUIName>Planet 2 Frame 2</GUIName>
-				</Item>
-				<Item>
-					<Index>35</Index>
-					<GUIName>Planet 2 Frame 3</GUIName>
-				</Item>
-				<Item>
-					<Index>36</Index>
-					<GUIName>Planet 2 Frame 4</GUIName>
-				</Item>
-				<Item>
-					<Index>37</Index>
-					<GUIName>Planet 2 Frame 5</GUIName>
-				</Item>
-				<Item>
-					<Index>38</Index>
-					<GUIName>Planet 2 Frame 6</GUIName>
-				</Item>
-				<Item>
-					<Index>39</Index>
-					<GUIName>Planet 2 Frame 7</GUIName>
-				</Item>
-				<Item>
-					<Index>40</Index>
-					<GUIName>Planet 2 Frame 8</GUIName>
-				</Item>
-				<Item>
-					<Index>41</Index>
-					<GUIName>Planet 3 Frame 9</GUIName>
-				</Item>
-				<Item>
-					<Index>42</Index>
-					<GUIName>Planet 3 Frame 10</GUIName>
-				</Item>
-				<Item>
-					<Index>43</Index>
-					<GUIName>Planet 3 Frame 11</GUIName>
-				</Item>
-				<Item>
-					<Index>44</Index>
-					<GUIName>Planet 3 Frame 12</GUIName>
-				</Item>
-				<Item>
-					<Index>45</Index>
-					<GUIName>Planet 3 Frame 13</GUIName>
-				</Item>
-				<Item>
-					<Index>46</Index>
-					<GUIName>Planet 3 Frame 14</GUIName>
-				</Item>
-				<Item>
-					<Index>47</Index>
-					<GUIName>Planet 3 Frame 15</GUIName>
-				</Item>
-				<Item>
-					<Index>48</Index>
-					<GUIName>Planet 3 Frame 0</GUIName>
-				</Item>
-				<Item>
-					<Index>49</Index>
-					<GUIName>Planet 3 Frame 1</GUIName>
-				</Item>
-				<Item>
-					<Index>50</Index>
-					<GUIName>Planet 3 Frame 2</GUIName>
-				</Item>
-				<Item>
-					<Index>51</Index>
-					<GUIName>Planet 3 Frame 3</GUIName>
-				</Item>
-				<Item>
-					<Index>52</Index>
-					<GUIName>Planet 3 Frame 4</GUIName>
-				</Item>
-				<Item>
-					<Index>53</Index>
-					<GUIName>Planet 3 Frame 5</GUIName>
-				</Item>
-				<Item>
-					<Index>54</Index>
-					<GUIName>Planet 3 Frame 6</GUIName>
-				</Item>
-				<Item>
-					<Index>55</Index>
-					<GUIName>Planet 3 Frame 7</GUIName>
-				</Item>
-				<Item>
-					<Index>56</Index>
-					<GUIName>Planet 4 Frame 8</GUIName>
-				</Item>
-				<Item>
-					<Index>57</Index>
-					<GUIName>Planet 4 Frame 9</GUIName>
-				</Item>
-				<Item>
-					<Index>58</Index>
-					<GUIName>Planet 4 Frame 10</GUIName>
-				</Item>
-				<Item>
-					<Index>59</Index>
-					<GUIName>Planet 4 Frame 11</GUIName>
-				</Item>
-				<Item>
-					<Index>60</Index>
-					<GUIName>Planet 4 Frame 12</GUIName>
-				</Item>
-				<Item>
-					<Index>61</Index>
-					<GUIName>Planet 4 Frame 13</GUIName>
-				</Item>
-				<Item>
-					<Index>62</Index>
-					<GUIName>Planet 4 Frame 14</GUIName>
-				</Item>
-				<Item>
-					<Index>63</Index>
-					<GUIName>Planet 4 Frame 15</GUIName>
-				</Item>
-				<Item>
-					<Index>64</Index>
-					<GUIName>Planet 4 Frame 0</GUIName>
-				</Item>
-				<Item>
-					<Index>65</Index>
-					<GUIName>Planet 4 Frame 1</GUIName>
-				</Item>
-				<Item>
-					<Index>66</Index>
-					<GUIName>Planet 4 Frame 2</GUIName>
-				</Item>
-				<Item>
-					<Index>67</Index>
-					<GUIName>Planet 4 Frame 3</GUIName>
-				</Item>
-				<Item>
-					<Index>68</Index>
-					<GUIName>Planet 4 Frame 4</GUIName>
-				</Item>
-				<Item>
-					<Index>69</Index>
-					<GUIName>Planet 4 Frame 5</GUIName>
-				</Item>
-				<Item>
-					<Index>70</Index>
-					<GUIName>Planet 4 Frame 6</GUIName>
-				</Item>
-				<Item>
-					<Index>71</Index>
-					<GUIName>Planet 4 Frame 7</GUIName>
-				</Item>
-				<Item>
-					<Index>72</Index>
-					<GUIName>Planet 4 Frame 8</GUIName>
-				</Item>
-				<Item>
-					<Index>73</Index>
-					<GUIName>Planet 5 Frame 9</GUIName>
-				</Item>
-				<Item>
-					<Index>74</Index>
-					<GUIName>Planet 5 Frame 10</GUIName>
-				</Item>
-				<Item>
-					<Index>75</Index>
-					<GUIName>Planet 5 Frame 11</GUIName>
-				</Item>
-				<Item>
-					<Index>76</Index>
-					<GUIName>Planet 5 Frame 12</GUIName>
-				</Item>
-				<Item>
-					<Index>77</Index>
-					<GUIName>Planet 5 Frame 13</GUIName>
-				</Item>
-				<Item>
-					<Index>78</Index>
-					<GUIName>Planet 5 Frame 14</GUIName>
-				</Item>
-				<Item>
-					<Index>79</Index>
-					<GUIName>Planet 5 Frame 15</GUIName>
-				</Item>
-				<Item>
-					<Index>80</Index>
-					<GUIName>Planet 5 Frame 0</GUIName>
-				</Item>
-				<Item>
-					<Index>81</Index>
-					<GUIName>Planet 5 Frame 1</GUIName>
-				</Item>
-				<Item>
-					<Index>82</Index>
-					<GUIName>Planet 5 Frame 2</GUIName>
-				</Item>
-				<Item>
-					<Index>83</Index>
-					<GUIName>Planet 5 Frame 3</GUIName>
-				</Item>
-				<Item>
-					<Index>84</Index>
-					<GUIName>Planet 5 Frame 4</GUIName>
-				</Item>
-				<Item>
-					<Index>85</Index>
-					<GUIName>Planet 5 Frame 5</GUIName>
-				</Item>
-				<Item>
-					<Index>86</Index>
-					<GUIName>Planet 5 Frame 6</GUIName>
-				</Item>
-				<Item>
-					<Index>87</Index>
-					<GUIName>Planet 5 Frame 7</GUIName>
-				</Item>
-				<Item>
-					<Index>88</Index>
-					<GUIName>Planet 6 Frame 8</GUIName>
-				</Item>
-				<Item>
-					<Index>89</Index>
-					<GUIName>Planet 6 Frame 9</GUIName>
-				</Item>
-				<Item>
-					<Index>90</Index>
-					<GUIName>Planet 6 Frame 10</GUIName>
-				</Item>
-				<Item>
-					<Index>91</Index>
-					<GUIName>Planet 6 Frame 11</GUIName>
-				</Item>
-				<Item>
-					<Index>92</Index>
-					<GUIName>Planet 6 Frame 12</GUIName>
-				</Item>
-				<Item>
-					<Index>93</Index>
-					<GUIName>Planet 6 Frame 13</GUIName>
-				</Item>
-				<Item>
-					<Index>94</Index>
-					<GUIName>Planet 6 Frame 14</GUIName>
-				</Item>
-				<Item>
-					<Index>95</Index>
-					<GUIName>Planet 6 Frame 15</GUIName>
-				</Item>
-				<Item>
-					<Index>96</Index>
-					<GUIName>Planet 6 Frame 0</GUIName>
-				</Item>
-				<Item>
-					<Index>97</Index>
-					<GUIName>Planet 6 Frame 1</GUIName>
-				</Item>
-				<Item>
-					<Index>98</Index>
-					<GUIName>Planet 6 Frame 2</GUIName>
-				</Item>
-				<Item>
-					<Index>99</Index>
-					<GUIName>Planet 6 Frame 3</GUIName>
-				</Item>
-				<Item>
-					<Index>100</Index>
-					<GUIName>Planet 6 Frame 4</GUIName>
-				</Item>
-				<Item>
-					<Index>101</Index>
-					<GUIName>Planet 6 Frame 5</GUIName>
-				</Item>
-				<Item>
-					<Index>102</Index>
-					<GUIName>Planet 6 Frame 6</GUIName>
-				</Item>
-				<Item>
-					<Index>103</Index>
-					<GUIName>Planet 6 Frame 7</GUIName>
-				</Item>
-				<Item>
-					<Index>104</Index>
-					<GUIName>Planet 6 Frame 8</GUIName>
-				</Item>
-				<Item>
-					<Index>105</Index>
-					<GUIName>Planet 7 Frame 9</GUIName>
-				</Item>
-				<Item>
-					<Index>106</Index>
-					<GUIName>Planet 7 Frame 10</GUIName>
-				</Item>
-				<Item>
-					<Index>107</Index>
-					<GUIName>Planet 7 Frame 11</GUIName>
-				</Item>
-				<Item>
-					<Index>108</Index>
-					<GUIName>Planet 7 Frame 12</GUIName>
-				</Item>
-				<Item>
-					<Index>109</Index>
-					<GUIName>Planet 7 Frame 13</GUIName>
-				</Item>
-				<Item>
-					<Index>110</Index>
-					<GUIName>Planet 7 Frame 14</GUIName>
-				</Item>
-				<Item>
-					<Index>111</Index>
-					<GUIName>Planet 7 Frame 15</GUIName>
-				</Item>
-				<Item>
-					<Index>112</Index>
-					<GUIName>Planet 7 Frame 0</GUIName>
-				</Item>
-				<Item>
-					<Index>113</Index>
-					<GUIName>Planet 7 Frame 1</GUIName>
-				</Item>
-				<Item>
-					<Index>114</Index>
-					<GUIName>Planet 7 Frame 2</GUIName>
-				</Item>
-				<Item>
-					<Index>115</Index>
-					<GUIName>Planet 7 Frame 3</GUIName>
-				</Item>
-				<Item>
-					<Index>116</Index>
-					<GUIName>Planet 7 Frame 4</GUIName>
-				</Item>
-				<Item>
-					<Index>117</Index>
-					<GUIName>Planet 7 Frame 5</GUIName>
-				</Item>
-				<Item>
-					<Index>118</Index>
-					<GUIName>Planet 7 Frame 6</GUIName>
-				</Item>
-				<Item>
-					<Index>119</Index>
-					<GUIName>Planet 7 Frame 7</GUIName>
-				</Item>
-				<Item>
-					<Index>120</Index>
-					<GUIName>Planet 8 Frame 8</GUIName>
-				</Item>
-				<Item>
-					<Index>121</Index>
-					<GUIName>Planet 8 Frame 9</GUIName>
-				</Item>
-				<Item>
-					<Index>122</Index>
-					<GUIName>Planet 8 Frame 10</GUIName>
-				</Item>
-				<Item>
-					<Index>123</Index>
-					<GUIName>Planet 8 Frame 11</GUIName>
-				</Item>
-				<Item>
-					<Index>124</Index>
-					<GUIName>Planet 8 Frame 12</GUIName>
-				</Item>
-				<Item>
-					<Index>125</Index>
-					<GUIName>Planet 8 Frame 13</GUIName>
-				</Item>
-				<Item>
-					<Index>126</Index>
-					<GUIName>Planet 8 Frame 14</GUIName>
-				</Item>
-				<Item>
-					<Index>127</Index>
-					<GUIName>Planet 8 Frame 15</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EFSUNIT.BIN</FileName>
-			<GUIName>EFSUNIT</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>32</Width>
-				<Height>32</Height>
-			</ItemDimensions>
-			<Notes>Units Icons</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-          <GUIName>Grappler</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Blow Ship</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Spore Ship</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Pod Ship</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>Shroud Weaver</GUIName>
-				</Item>
-				<Item>
-					<Index>5</Index>
-					<GUIName>Veil Seeker</GUIName>
-				</Item>
-				<Item>
-					<Index>6</Index>
-					<GUIName>Destroyer</GUIName>
-				</Item>
-				<Item>
-					<Index>7</Index>
-					<GUIName>Quick Mercy</GUIName>
-				</Item>
-				<Item>
-					<Index>8</Index>
-					<GUIName>Deathmate</GUIName>
-				</Item>
-				<Item>
-					<Index>9</Index>
-					<GUIName>Vau Carrier</GUIName>
-				</Item>
-				<Item>
-					<Index>10</Index>
-					<GUIName>Vau Transport</GUIName>
-				</Item>
-				<Item>
-					<Index>11</Index>
-					<GUIName>Stealth Ship</GUIName>
-				</Item>
-				<Item>
-					<Index>12</Index>
-					<GUIName>Cadiz Dreadnought</GUIName>
-				</Item>
-				<Item>
-					<Index>13</Index>
-					<GUIName>Vlad Cruiser</GUIName>
-				</Item>
-				<Item>
-					<Index>14</Index>
-					<GUIName>Destroyer</GUIName>
-				</Item>
-				<Item>
-					<Index>15</Index>
-					<GUIName>Frigate</GUIName>
-				</Item>
-				<Item>
-					<Index>16</Index>
-					<GUIName>Carrier</GUIName>
-				</Item>
-				<Item>
-					<Index>17</Index>
-					<GUIName>Space Fighter</GUIName>
-				</Item>
-				<Item>
-					<Index>18</Index>
-					<GUIName>Space Torp Bmbr</GUIName>
-				</Item>
-				<Item>
-					<Index>19</Index>
-					<GUIName>Assault Lander</GUIName>
-				</Item>
-				<Item>
-					<Index>20</Index>
-					<GUIName>Freighter</GUIName>
-				</Item>
-				<Item>
-					<Index>21</Index>
-					<GUIName>Bulk Hauler</GUIName>
-				</Item>
-				<Item>
-					<Index>22</Index>
-					<GUIName>Starbase</GUIName>
-				</Item>
-				<Item>
-					<Index>23</Index>
-					<GUIName>Submarine</GUIName>
-				</Item>
-				<Item>
-					<Index>24</Index>
-					<GUIName>NBattleship</GUIName>
-				</Item>
-				<Item>
-					<Index>25</Index>
-					<GUIName>NDestroyer</GUIName>
-				</Item>
-				<Item>
-					<Index>26</Index>
-					<GUIName>NCarrier</GUIName>
-				</Item>
-				<Item>
-					<Index>27</Index>
-					<GUIName>Naval Transport</GUIName>
-				</Item>
-				<Item>
-					<Index>28</Index>
-					<GUIName>Sceptor</GUIName>
-				</Item>
-				<Item>
-					<Index>29</Index>
-					<GUIName>Holy Relic</GUIName>
-				</Item>
-				<Item>
-					<Index>30</Index>
-					<GUIName>Vau Fighter</GUIName>
-				</Item>
-				<Item>
-					<Index>31</Index>
-					<GUIName>Vau Mandarin</GUIName>
-				</Item>
-				<Item>
-					<Index>32</Index>
-					<GUIName>Vau Guard</GUIName>
-				</Item>
-				<Item>
-					<Index>33</Index>
-					<GUIName>Vau Jet Bike</GUIName>
-				</Item>
-				<Item>
-					<Index>34</Index>
-					<GUIName>Vau War-Skif</GUIName>
-				</Item>
-				<Item>
-					<Index>35</Index>
-					<GUIName>Vau War-Tower</GUIName>
-				</Item>
-				<Item>
-					<Index>36</Index>
-					<GUIName>Vau Warrior</GUIName>
-				</Item>
-				<Item>
-					<Index>37</Index>
-					<GUIName>Vau Worker</GUIName>
-				</Item>
-				<Item>
-					<Index>38</Index>
-					<GUIName>Symbiot Spitter</GUIName>
-				</Item>
-				<Item>
-					<Index>39</Index>
-					<GUIName>Symbiot Minder</GUIName>
-				</Item>
-				<Item>
-					<Index>40</Index>
-					<GUIName>Symbiot Tank</GUIName>
-				</Item>
-				<Item>
-					<Index>41</Index>
-					<GUIName>Symbiot Arcer</GUIName>
-				</Item>
-				<Item>
-					<Index>42</Index>
-					<GUIName>Symbiot Butcher</GUIName>
-				</Item>
-				<Item>
-					<Index>43</Index>
-					<GUIName>Symbiot Reaver</GUIName>
-				</Item>
-				<Item>
-					<Index>44</Index>
-					<GUIName>Symbiot Nester</GUIName>
-				</Item>
-				<Item>
-					<Index>45</Index>
-					<GUIName>Noble</GUIName>
-				</Item>
-				<Item>
-					<Index>46</Index>
-					<GUIName>Warlock</GUIName>
-				</Item>
-				<Item>
-					<Index>47</Index>
-					<GUIName>Inquisitor</GUIName>
-				</Item>
-				<Item>
-					<Index>48</Index>
-					<GUIName>Dervish</GUIName>
-				</Item>
-				<Item>
-					<Index>49</Index>
-					<GUIName>Assassin</GUIName>
-				</Item>
-				<Item>
-					<Index>50</Index>
-					<GUIName>Merchant</GUIName>
-				</Item>
-				<Item>
-					<Index>51</Index>
-					<GUIName>Officer Corp</GUIName>
-				</Item>
-				<Item>
-					<Index>52</Index>
-					<GUIName>Clergy</GUIName>
-				</Item>
-				<Item>
-					<Index>53</Index>
-					<GUIName>Engineer</GUIName>
-				</Item>
-				<Item>
-					<Index>54</Index>
-					<GUIName>Special Forces</GUIName>
-				</Item>
-				<Item>
-					<Index>55</Index>
-					<GUIName>Rebel Partisans</GUIName>
-				</Item>
-				<Item>
-					<Index>56</Index>
-					<GUIName>PTS Laser Canon</GUIName>
-				</Item>
-				<Item>
-					<Index>57</Index>
-					<GUIName>PTS Missile Launcher</GUIName>
-				</Item>
-				<Item>
-					<Index>58</Index>
-					<GUIName>Scout Tank</GUIName>
-				</Item>
-				<Item>
-					<Index>59</Index>
-					<GUIName>Med Tank</GUIName>
-				</Item>
-				<Item>
-					<Index>60</Index>
-					<GUIName>Anti-infantry Tank</GUIName>
-				</Item>
-				<Item>
-					<Index>61</Index>
-					<GUIName>Mega Tank</GUIName>
-				</Item>
-				<Item>
-					<Index>62</Index>
-					<GUIName>Hover Tank</GUIName>
-				</Item>
-				<Item>
-					<Index>63</Index>
-					<GUIName>Hover Tank Killer</GUIName>
-				</Item>
-				<Item>
-					<Index>64</Index>
-					<GUIName>Hover Anti Air</GUIName>
-				</Item>
-				<Item>
-					<Index>65</Index>
-					<GUIName>Tank Killer</GUIName>
-				</Item>
-				<Item>
-					<Index>66</Index>
-					<GUIName>Hvy Tank Killer</GUIName>
-				</Item>
-				<Item>
-					<Index>67</Index>
-					<GUIName>SP Anti Air</GUIName>
-				</Item>
-				<Item>
-					<Index>68</Index>
-					<GUIName>SP Artillery</GUIName>
-				</Item>
-				<Item>
-					<Index>69</Index>
-					<GUIName>Assault Gun</GUIName>
-				</Item>
-				<Item>
-					<Index>70</Index>
-					<GUIName>Rocket Art</GUIName>
-				</Item>
-				<Item>
-					<Index>71</Index>
-					<GUIName>Pestulator Artillery</GUIName>
-				</Item>
-				<Item>
-					<Index>72</Index>
-					<GUIName>Stealth Tank</GUIName>
-				</Item>
-				<Item>
-					<Index>73</Index>
-					<GUIName>Gunship</GUIName>
-				</Item>
-				<Item>
-					<Index>74</Index>
-					<GUIName>Atmos Fighter</GUIName>
-				</Item>
-				<Item>
-					<Index>75</Index>
-					<GUIName>Divebomber</GUIName>
-				</Item>
-				<Item>
-					<Index>76</Index>
-					<GUIName>Strategic Bmber</GUIName>
-				</Item>
-				<Item>
-					<Index>77</Index>
-					<GUIName>Marauder Lgn</GUIName>
-				</Item>
-				<Item>
-					<Index>78</Index>
-					<GUIName>Ranger Lgn</GUIName>
-				</Item>
-				<Item>
-					<Index>79</Index>
-					<GUIName>Xyll Warbeast</GUIName>
-				</Item>
-				<Item>
-					<Index>80</Index>
-					<GUIName>Shock Lgn</GUIName>
-				</Item>
-				<Item>
-					<Index>81</Index>
-					<GUIName>Assault Lgn</GUIName>
-				</Item>
-				<Item>
-					<Index>82</Index>
-					<GUIName>Armor Lgn</GUIName>
-				</Item>
-				<Item>
-					<Index>83</Index>
-					<GUIName>Infantry Lgn</GUIName>
-				</Item>
-				<Item>
-					<Index>84</Index>
-					<GUIName>Militia Lgn</GUIName>
-				</Item>
-				<Item>
-					<Index>85</Index>
-					<GUIName>Anti-Aircraft</GUIName>
-				</Item>
-				<Item>
-					<Index>86</Index>
-					<GUIName>Anti-Tank Gun</GUIName>
-				</Item>
-				<Item>
-					<Index>87</Index>
-					<GUIName>Artillery</GUIName>
-				</Item>
-				<Item>
-					<Index>88</Index>
-					<GUIName>Plague Bomb</GUIName>
-				</Item>
-				<Item>
-					<Index>89</Index>
-					<GUIName>Scientist</GUIName>
-				</Item>
-				<Item>
-					<Index>90</Index>
-					<GUIName>Peasant</GUIName>
-				</Item>
-				<Item>
-					<Index>91</Index>
-					<GUIName>Cargo</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EYE.BIN</FileName>
-			<GUIName>EYE</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>120</Width>
-				<Height>123</Height>
-			</ItemDimensions>
-			<Notes>Eye factions banners</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Vacant banner</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>LI-HALAN banner</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>HAZAT banner</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>DECADOS banner</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>HAWKWOOD banner</GUIName>
-				</Item>
-				<Item>
-					<Index>5</Index>
-					<GUIName>AL-MALIK banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>EYE100.BIN</FileName>
-			<GUIName>EYE100</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Notes>Eye banner</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Imperial Eye Banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>FIRE.BIN</FileName>
-			<GUIName>FIRE</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>29</Width>
-				<Height>32</Height>
-			</ItemDimensions>
-			<Notes>Explosion Animation</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Frame 0</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Frame 1</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Frame 2</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Frame 3</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>FIST.BIN</FileName>
-			<GUIName>FIST</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>32</Width>
-				<Height>32</Height>
-			</ItemDimensions>
-			<Notes>Red Fist (Rebellion?)</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Fist</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>FLAG.BIN</FileName>
-			<GUIName>FLAG</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>40</Width>
-				<Height>40</Height>
-			</ItemDimensions>
-			<Notes>Combat surrender flag</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Surrender Flag</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>FLEET.BIN</FileName>
-			<GUIName>FLEET</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>120</Width>
-				<Height>123</Height>
-			</ItemDimensions>
-			<Notes>Fleet factions banners</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Vacant banner</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>LI-HALAN banner</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>HAZAT banner</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>DECADOS banner</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>HAWKWOOD banner</GUIName>
-				</Item>
-				<Item>
-					<Index>5</Index>
-					<GUIName>AL-MALIK banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>FLET100.BIN</FileName>
-			<GUIName>FLET100</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Notes>Fleet banner</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>HOUSE1.BIN</FileName>
-			<GUIName>HOUSE1</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Notes>Li-Halan banner</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Li-Halan Banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>HOUSE2.BIN</FileName>
-			<GUIName>HOUSE2</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Notes>The Hazat banner</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Hazat Banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>HOUSE3.BIN</FileName>
-			<GUIName>HOUSE3</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Notes>Decados banner</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Decados Banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>HOUSE4.BIN</FileName>
-			<GUIName>HOUSE4</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Notes>Hawkwood banner</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Hawkwood Banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>HOUSE5.BIN</FileName>
-			<GUIName>HOUSE5</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Notes>Al-Malik banner</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Al-Malik Banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>JUMP.BIN</FileName>
-			<GUIName>JUMP</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>34</Width>
-				<Height>34</Height>
-			</ItemDimensions>
-			<Notes>Jumpgate Animation</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Frame 0</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Frame 1</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Frame 2</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Frame 3</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>Frame 4</GUIName>
-				</Item>
-				<Item>
-					<Index>5</Index>
-					<GUIName>Frame 5</GUIName>
-				</Item>
-				<Item>
-					<Index>6</Index>
-					<GUIName>Frame 6</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>PLYCOMP.BIN</FileName>
-			<GUIName>PLYCOMP</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>48</Width>
-				<Height>64</Height>
-			</ItemDimensions>
-			<Notes>Computer player icon (new game setup)</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Computer player</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>PLYHUMAN.BIN</FileName>
-			<GUIName>PLYHUMAN</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>48</Width>
-				<Height>64</Height>
-			</ItemDimensions>
-			<Notes>Human player icon (new game setup)</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Human player</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>POD.BIN</FileName>
-			<GUIName>POD</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>24</Width>
-				<Height>9</Height>
-			</ItemDimensions>
-			<Notes>Cargo pod icon</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Cargo pod</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>PORTRAIT.BIN</FileName>
-			<GUIName>PORTRAIT</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>250</Width>
-				<Height>200</Height>
-			</ItemDimensions>
-			<Notes>House leaders portraits</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>LI-HALAN 1</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>HAZAT 1</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>DECADOS 1</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>HAWKWOOD 1</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>AL-MALIK 1</GUIName>
-				</Item>
-				<Item>
-					<Index>5</Index>
-					<GUIName>LI-HALAN 2</GUIName>
-				</Item>
-				<Item>
-					<Index>6</Index>
-					<GUIName>HAZAT 2</GUIName>
-				</Item>
-				<Item>
-					<Index>7</Index>
-					<GUIName>DECADOS 2</GUIName>
-				</Item>
-				<Item>
-					<Index>8</Index>
-					<GUIName>HAWKWOOD 2</GUIName>
-				</Item>
-				<Item>
-					<Index>9</Index>
-					<GUIName>AL-MALIK 2</GUIName>
-				</Item>
-				<Item>
-					<Index>10</Index>
-					<GUIName>LI-HALAN 3</GUIName>
-				</Item>
-				<Item>
-					<Index>11</Index>
-					<GUIName>HAZAT 3</GUIName>
-				</Item>
-				<Item>
-					<Index>12</Index>
-					<GUIName>DECADOS 3</GUIName>
-				</Item>
-				<Item>
-					<Index>13</Index>
-					<GUIName>HAWKWOOD 3</GUIName>
-				</Item>
-				<Item>
-					<Index>14</Index>
-					<GUIName>AL-MALIK 3</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>PTRATCHU.BIN</FileName>
-			<GUIName>PTRATCHU</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>250</Width>
-				<Height>200</Height>
-			</ItemDimensions>
-			<Notes>House leaders portraits</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Orthodox</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Amalthean</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Eskatonic</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Incarnates</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>Avestite</GUIName>
-				</Item>
-				<Item>
-					<Index>5</Index>
-					<GUIName>Brother Battle</GUIName>
-				</Item>
-				<Item>
-					<Index>6</Index>
-					<GUIName>Mendicant</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>PTRATLEA.BIN</FileName>
-			<GUIName>PTRATLEA</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>250</Width>
-				<Height>200</Height>
-			</ItemDimensions>
-			<Notes>Leaguie leader portrait</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Leaguemeister Portrait</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>PTRATTUT.BIN</FileName>
-			<GUIName>PTRATTUT</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>250</Width>
-				<Height>200</Height>
-			</ItemDimensions>
-			<Notes>Advisor portrait</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Advisor Portrait</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>PTRATVAU.BIN</FileName>
-			<GUIName>PTRATVAU</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>250</Width>
-				<Height>200</Height>
-			</ItemDimensions>
-			<Notes>Vau portrait</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Vau Portrait</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>REGENT.BIN</FileName>
-			<GUIName>REGENT</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>120</Width>
-				<Height>123</Height>
-			</ItemDimensions>
-			<Notes>Regency House banners</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Vacant banner</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>LI-HALAN banner</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>HAZAT banner</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>DECADOS banner</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>HAWKWOOD banner</GUIName>
-				</Item>
-				<Item>
-					<Index>5</Index>
-					<GUIName>AL-MALIK banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>RGT100.BIN</FileName>
-			<GUIName>RGT100</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Notes>Regency banner</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Regency Banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>SCROLL.BIN</FileName>
-			<GUIName>SCROLL</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>16</Width>
-				<Height>16</Height>
-			</ItemDimensions>
-			<Notes>Scrollbar Elements</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Arrow up</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>Arrow right</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>Arrow down</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>Arrow left</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>Handle</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>SHIELD.BIN</FileName>
-			<GUIName>SHIELD</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>5</Width>
-				<Height>6</Height>
-			</ItemDimensions>
-			<Notes>Shield Icon</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Shield</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>SKULL.BIN</FileName>
-			<GUIName>SKULL</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>40</Width>
-				<Height>40</Height>
-			</ItemDimensions>
-			<Notes>Combat destruction skull</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Combat Skull</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>STIG100.BIN</FileName>
-			<GUIName>STIG100</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Notes>Stigmata Garrison banner</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Stigmata Banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>STIGMATA.BIN</FileName>
-			<GUIName>STIGMATA</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>120</Width>
-				<Height>123</Height>
-			</ItemDimensions>
-			<Notes>STIGMATA factions banners</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Vacant banner</GUIName>
-				</Item>
-				<Item>
-					<Index>1</Index>
-					<GUIName>LI-HALAN banner</GUIName>
-				</Item>
-				<Item>
-					<Index>2</Index>
-					<GUIName>HAZAT banner</GUIName>
-				</Item>
-				<Item>
-					<Index>3</Index>
-					<GUIName>DECADOS banner</GUIName>
-				</Item>
-				<Item>
-					<Index>4</Index>
-					<GUIName>HAWKWOOD banner</GUIName>
-				</Item>
-				<Item>
-					<Index>5</Index>
-					<GUIName>AL-MALIK banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>SYM100.BIN</FileName>
-			<GUIName>SYM100</GUIName>
-			<ItemDimensions Format="Rectangle">
-				<Width>100</Width>
-				<Height>100</Height>
-			</ItemDimensions>
-			<Notes>Symbiots banner</Notes>
-			<Items>
-				<Item>
-					<Index>0</Index>
-					<GUIName>Symbiots Banner</GUIName>
-				</Item>
-			</Items>
-		</Preset>
-		<Preset>
-			<FileName>GLIMMER.BIN</FileName>
-			<GUIName>GLIMMER</GUIName>
-			<ItemDimensions Format="Hexagon">
-				<Width>48</Width>
-				<Height>40</Height>
-			</ItemDimensions>
-			<Notes></Notes>
-				<Items>
-					<Item>
-						<Index>0</Index>
-						<GUIName>Shield overlay</GUIName>
-					</Item>
-				</Items>
-		</Preset>
+  <Presets>
     <Preset>
+      <Id>01</Id>
+      <FileName>BANNERS.BIN</FileName>
+      <GUIName>BANNERS</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>120</Width>
+        <Height>123</Height>
+      </ItemDimensions>
+      <Notes />
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>02</Id>
+      <FileName>BNRCHU.BIN</FileName>
+      <GUIName>BNRCHU</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Notes />
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Church Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>03</Id>
+      <FileName>BNRLEG.BIN</FileName>
+      <GUIName>BNRLEG</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>League Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>04</Id>
+      <FileName>BNRREB.BIN</FileName>
+      <GUIName>BNRREB</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Rebels Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>05</Id>
+      <FileName>BNRVAU.BIN</FileName>
+      <GUIName>BNRVAU</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Vau Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>06</Id>
+      <FileName>CARGO.BIN</FileName>
+      <GUIName>CARGO</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>34</Width>
+        <Height>29</Height>
+      </ItemDimensions>
+      <Notes>Resources icons</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Food</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Energy</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Metals</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Trace</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>Exotics</GUIName>
+        </Item>
+        <Item>
+          <Index>5</Index>
+          <GUIName>Chemicals</GUIName>
+        </Item>
+        <Item>
+          <Index>6</Index>
+          <GUIName>Biochems</GUIName>
+        </Item>
+        <Item>
+          <Index>7</Index>
+          <GUIName>Electronics</GUIName>
+        </Item>
+        <Item>
+          <Index>8</Index>
+          <GUIName>Ceramsteel</GUIName>
+        </Item>
+        <Item>
+          <Index>9</Index>
+          <GUIName>Wetware</GUIName>
+        </Item>
+        <Item>
+          <Index>10</Index>
+          <GUIName>Monopols</GUIName>
+        </Item>
+        <Item>
+          <Index>11</Index>
+          <GUIName>Gems</GUIName>
+        </Item>
+        <Item>
+          <Index>12</Index>
+          <GUIName>Singularities</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>07</Id>
+      <FileName>EFSBUT1.BIN</FileName>
+      <GUIName>EFSBUT1</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>27</Width>
+        <Height>27</Height>
+      </ItemDimensions>
+      <Notes>Diplomatic screen peace and war icons</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Peace Icon</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>War Icon</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>08</Id>
+      <FileName>EFSBUT2.BIN</FileName>
+      <GUIName>EFSBUT2</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>23</Width>
+        <Height>23</Height>
+      </ItemDimensions>
+      <Notes>Starmap button</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Starmap Idle</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Starmap Hover</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Starmap Down</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>09</Id>
+      <FileName>EFSBUT3.BIN</FileName>
+      <GUIName>EFSBUT3</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>23</Width>
+        <Height>41</Height>
+      </ItemDimensions>
+      <Notes>Launch ships into space</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Space Idle</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Space Hover</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Space Down</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Space Disabled</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>0A</Id>
+      <FileName>EFSBUT4.BIN</FileName>
+      <GUIName>EFSBUT4</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>30</Width>
+        <Height>14</Height>
+      </ItemDimensions>
+      <Notes>Group all button</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Group Idle</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Group Hover</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Group Down</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Group Disabled</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>0B</Id>
+      <FileName>EFSBUT5.BIN</FileName>
+      <GUIName>EFSBUT5</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>41</Width>
+        <Height>14</Height>
+      </ItemDimensions>
+      <Notes>Some sort of play button</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Idle</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Hover</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Down</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Disabled</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>0C</Id>
+      <FileName>EFSBUT6.BIN</FileName>
+      <GUIName>EFSBUT6</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>30</Width>
+        <Height>14</Height>
+      </ItemDimensions>
+      <Notes>View stack button</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Stack Info Idle</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Stack Info Hover</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Stack Info Down</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Stack Info Disabled</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>0D</Id>
+      <FileName>EFSBUT7.BIN</FileName>
+      <GUIName>EFSBUT7</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>25</Width>
+        <Height>25</Height>
+      </ItemDimensions>
+      <Notes>Fancy checkboxes</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Unticked</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Ticked</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>0E</Id>
+      <FileName>EFSBUT8.BIN</FileName>
+      <GUIName>EFSBUT8</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>25</Width>
+        <Height>25</Height>
+      </ItemDimensions>
+      <Notes>Sentry button</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Sentry Idle</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Sentry Hover</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Sentry Down</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Sentry Disabled</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>0F</Id>
+      <FileName>EFSBUT9.BIN</FileName>
+      <GUIName>EFSBUT9</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>25</Width>
+        <Height>25</Height>
+      </ItemDimensions>
+      <Notes>Skip unit's turn</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Skip Idle</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Skip Hover</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Skip Down</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Skip Disabled</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>10</Id>
+      <FileName>EFSBUT10.BIN</FileName>
+      <GUIName>EFSBUT10</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>25</Width>
+        <Height>25</Height>
+      </ItemDimensions>
+      <Notes>Push unit to back of queue</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Wait Idle</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Wait Hover</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Wait Down</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Wait Disabled</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>11</Id>
+      <FileName>EFSBUT11.BIN</FileName>
+      <GUIName>EFSBUT11</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>25</Width>
+        <Height>25</Height>
+      </ItemDimensions>
+      <Notes>Execute move order</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Move Idle</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Move Hover</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Move Down</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Move Disabled</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>12</Id>
+      <FileName>EFSBUT12.BIN</FileName>
+      <GUIName>EFSBUT12</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>23</Width>
+        <Height>12</Height>
+      </ItemDimensions>
+      <Notes>Experience medals</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Expert</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Elite</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>13</Id>
+      <FileName>EFSBUT13.BIN</FileName>
+      <GUIName>EFSBUT13</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>15</Width>
+        <Height>13</Height>
+      </ItemDimensions>
+      <Notes>Taxes hearts</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Loyalty minus</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Loyalty plus</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>14</Id>
+      <FileName>EFSBUT14.BIN</FileName>
+      <GUIName>EFSBUT14</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>27</Width>
+        <Height>27</Height>
+      </ItemDimensions>
+      <Notes>League Embargo icons</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>No Embargo</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Embargoed</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>15</Id>
+      <FileName>EFSBUT15.BIN</FileName>
+      <GUIName>EFSBUT15</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>15</Width>
+        <Height>13</Height>
+      </ItemDimensions>
+      <Notes>Loyalty icon</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Loyalty 0</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Loyalty 25</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Loyalty 50</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Loyalty 75</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>Loyalty 100</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>16</Id>
+      <FileName>EFSBUT16.BIN</FileName>
+      <GUIName>EFSBUT16</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>54</Width>
+        <Height>50</Height>
+      </ItemDimensions>
+      <Notes>End Turn Hourglass</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>End Turn Idle</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>End Turn Hover</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>End Turn Down</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>17</Id>
+      <FileName>EFSPLAN.BIN</FileName>
+      <GUIName>EFSPLAN</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>32</Width>
+        <Height>32</Height>
+      </ItemDimensions>
+      <Notes>Planet animations</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Planet 0 Frame 0</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Planet 0 Frame 1</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Planet 0 Frame 2</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Planet 0 Frame 3</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>Planet 0 Frame 4</GUIName>
+        </Item>
+        <Item>
+          <Index>5</Index>
+          <GUIName>Planet 0 Frame 5</GUIName>
+        </Item>
+        <Item>
+          <Index>6</Index>
+          <GUIName>Planet 0 Frame 6</GUIName>
+        </Item>
+        <Item>
+          <Index>7</Index>
+          <GUIName>Planet 0 Frame 7</GUIName>
+        </Item>
+        <Item>
+          <Index>8</Index>
+          <GUIName>Planet 0 Frame 8</GUIName>
+        </Item>
+        <Item>
+          <Index>9</Index>
+          <GUIName>Planet 1 Frame 9</GUIName>
+        </Item>
+        <Item>
+          <Index>10</Index>
+          <GUIName>Planet 1 Frame 10</GUIName>
+        </Item>
+        <Item>
+          <Index>11</Index>
+          <GUIName>Planet 1 Frame 11</GUIName>
+        </Item>
+        <Item>
+          <Index>12</Index>
+          <GUIName>Planet 1 Frame 12</GUIName>
+        </Item>
+        <Item>
+          <Index>13</Index>
+          <GUIName>Planet 1 Frame 13</GUIName>
+        </Item>
+        <Item>
+          <Index>14</Index>
+          <GUIName>Planet 1 Frame 14</GUIName>
+        </Item>
+        <Item>
+          <Index>15</Index>
+          <GUIName>Planet 1 Frame 15</GUIName>
+        </Item>
+        <Item>
+          <Index>16</Index>
+          <GUIName>Planet 1 Frame 0</GUIName>
+        </Item>
+        <Item>
+          <Index>17</Index>
+          <GUIName>Planet 1 Frame 1</GUIName>
+        </Item>
+        <Item>
+          <Index>18</Index>
+          <GUIName>Planet 1 Frame 2</GUIName>
+        </Item>
+        <Item>
+          <Index>19</Index>
+          <GUIName>Planet 1 Frame 3</GUIName>
+        </Item>
+        <Item>
+          <Index>20</Index>
+          <GUIName>Planet 1 Frame 4</GUIName>
+        </Item>
+        <Item>
+          <Index>21</Index>
+          <GUIName>Planet 1 Frame 5</GUIName>
+        </Item>
+        <Item>
+          <Index>22</Index>
+          <GUIName>Planet 1 Frame 6</GUIName>
+        </Item>
+        <Item>
+          <Index>23</Index>
+          <GUIName>Planet 1 Frame 7</GUIName>
+        </Item>
+        <Item>
+          <Index>24</Index>
+          <GUIName>Planet 2 Frame 8</GUIName>
+        </Item>
+        <Item>
+          <Index>25</Index>
+          <GUIName>Planet 2 Frame 9</GUIName>
+        </Item>
+        <Item>
+          <Index>26</Index>
+          <GUIName>Planet 2 Frame 10</GUIName>
+        </Item>
+        <Item>
+          <Index>27</Index>
+          <GUIName>Planet 2 Frame 11</GUIName>
+        </Item>
+        <Item>
+          <Index>28</Index>
+          <GUIName>Planet 2 Frame 12</GUIName>
+        </Item>
+        <Item>
+          <Index>29</Index>
+          <GUIName>Planet 2 Frame 13</GUIName>
+        </Item>
+        <Item>
+          <Index>30</Index>
+          <GUIName>Planet 2 Frame 14</GUIName>
+        </Item>
+        <Item>
+          <Index>31</Index>
+          <GUIName>Planet 2 Frame 15</GUIName>
+        </Item>
+        <Item>
+          <Index>32</Index>
+          <GUIName>Planet 2 Frame 0</GUIName>
+        </Item>
+        <Item>
+          <Index>33</Index>
+          <GUIName>Planet 2 Frame 1</GUIName>
+        </Item>
+        <Item>
+          <Index>34</Index>
+          <GUIName>Planet 2 Frame 2</GUIName>
+        </Item>
+        <Item>
+          <Index>35</Index>
+          <GUIName>Planet 2 Frame 3</GUIName>
+        </Item>
+        <Item>
+          <Index>36</Index>
+          <GUIName>Planet 2 Frame 4</GUIName>
+        </Item>
+        <Item>
+          <Index>37</Index>
+          <GUIName>Planet 2 Frame 5</GUIName>
+        </Item>
+        <Item>
+          <Index>38</Index>
+          <GUIName>Planet 2 Frame 6</GUIName>
+        </Item>
+        <Item>
+          <Index>39</Index>
+          <GUIName>Planet 2 Frame 7</GUIName>
+        </Item>
+        <Item>
+          <Index>40</Index>
+          <GUIName>Planet 2 Frame 8</GUIName>
+        </Item>
+        <Item>
+          <Index>41</Index>
+          <GUIName>Planet 3 Frame 9</GUIName>
+        </Item>
+        <Item>
+          <Index>42</Index>
+          <GUIName>Planet 3 Frame 10</GUIName>
+        </Item>
+        <Item>
+          <Index>43</Index>
+          <GUIName>Planet 3 Frame 11</GUIName>
+        </Item>
+        <Item>
+          <Index>44</Index>
+          <GUIName>Planet 3 Frame 12</GUIName>
+        </Item>
+        <Item>
+          <Index>45</Index>
+          <GUIName>Planet 3 Frame 13</GUIName>
+        </Item>
+        <Item>
+          <Index>46</Index>
+          <GUIName>Planet 3 Frame 14</GUIName>
+        </Item>
+        <Item>
+          <Index>47</Index>
+          <GUIName>Planet 3 Frame 15</GUIName>
+        </Item>
+        <Item>
+          <Index>48</Index>
+          <GUIName>Planet 3 Frame 0</GUIName>
+        </Item>
+        <Item>
+          <Index>49</Index>
+          <GUIName>Planet 3 Frame 1</GUIName>
+        </Item>
+        <Item>
+          <Index>50</Index>
+          <GUIName>Planet 3 Frame 2</GUIName>
+        </Item>
+        <Item>
+          <Index>51</Index>
+          <GUIName>Planet 3 Frame 3</GUIName>
+        </Item>
+        <Item>
+          <Index>52</Index>
+          <GUIName>Planet 3 Frame 4</GUIName>
+        </Item>
+        <Item>
+          <Index>53</Index>
+          <GUIName>Planet 3 Frame 5</GUIName>
+        </Item>
+        <Item>
+          <Index>54</Index>
+          <GUIName>Planet 3 Frame 6</GUIName>
+        </Item>
+        <Item>
+          <Index>55</Index>
+          <GUIName>Planet 3 Frame 7</GUIName>
+        </Item>
+        <Item>
+          <Index>56</Index>
+          <GUIName>Planet 4 Frame 8</GUIName>
+        </Item>
+        <Item>
+          <Index>57</Index>
+          <GUIName>Planet 4 Frame 9</GUIName>
+        </Item>
+        <Item>
+          <Index>58</Index>
+          <GUIName>Planet 4 Frame 10</GUIName>
+        </Item>
+        <Item>
+          <Index>59</Index>
+          <GUIName>Planet 4 Frame 11</GUIName>
+        </Item>
+        <Item>
+          <Index>60</Index>
+          <GUIName>Planet 4 Frame 12</GUIName>
+        </Item>
+        <Item>
+          <Index>61</Index>
+          <GUIName>Planet 4 Frame 13</GUIName>
+        </Item>
+        <Item>
+          <Index>62</Index>
+          <GUIName>Planet 4 Frame 14</GUIName>
+        </Item>
+        <Item>
+          <Index>63</Index>
+          <GUIName>Planet 4 Frame 15</GUIName>
+        </Item>
+        <Item>
+          <Index>64</Index>
+          <GUIName>Planet 4 Frame 0</GUIName>
+        </Item>
+        <Item>
+          <Index>65</Index>
+          <GUIName>Planet 4 Frame 1</GUIName>
+        </Item>
+        <Item>
+          <Index>66</Index>
+          <GUIName>Planet 4 Frame 2</GUIName>
+        </Item>
+        <Item>
+          <Index>67</Index>
+          <GUIName>Planet 4 Frame 3</GUIName>
+        </Item>
+        <Item>
+          <Index>68</Index>
+          <GUIName>Planet 4 Frame 4</GUIName>
+        </Item>
+        <Item>
+          <Index>69</Index>
+          <GUIName>Planet 4 Frame 5</GUIName>
+        </Item>
+        <Item>
+          <Index>70</Index>
+          <GUIName>Planet 4 Frame 6</GUIName>
+        </Item>
+        <Item>
+          <Index>71</Index>
+          <GUIName>Planet 4 Frame 7</GUIName>
+        </Item>
+        <Item>
+          <Index>72</Index>
+          <GUIName>Planet 4 Frame 8</GUIName>
+        </Item>
+        <Item>
+          <Index>73</Index>
+          <GUIName>Planet 5 Frame 9</GUIName>
+        </Item>
+        <Item>
+          <Index>74</Index>
+          <GUIName>Planet 5 Frame 10</GUIName>
+        </Item>
+        <Item>
+          <Index>75</Index>
+          <GUIName>Planet 5 Frame 11</GUIName>
+        </Item>
+        <Item>
+          <Index>76</Index>
+          <GUIName>Planet 5 Frame 12</GUIName>
+        </Item>
+        <Item>
+          <Index>77</Index>
+          <GUIName>Planet 5 Frame 13</GUIName>
+        </Item>
+        <Item>
+          <Index>78</Index>
+          <GUIName>Planet 5 Frame 14</GUIName>
+        </Item>
+        <Item>
+          <Index>79</Index>
+          <GUIName>Planet 5 Frame 15</GUIName>
+        </Item>
+        <Item>
+          <Index>80</Index>
+          <GUIName>Planet 5 Frame 0</GUIName>
+        </Item>
+        <Item>
+          <Index>81</Index>
+          <GUIName>Planet 5 Frame 1</GUIName>
+        </Item>
+        <Item>
+          <Index>82</Index>
+          <GUIName>Planet 5 Frame 2</GUIName>
+        </Item>
+        <Item>
+          <Index>83</Index>
+          <GUIName>Planet 5 Frame 3</GUIName>
+        </Item>
+        <Item>
+          <Index>84</Index>
+          <GUIName>Planet 5 Frame 4</GUIName>
+        </Item>
+        <Item>
+          <Index>85</Index>
+          <GUIName>Planet 5 Frame 5</GUIName>
+        </Item>
+        <Item>
+          <Index>86</Index>
+          <GUIName>Planet 5 Frame 6</GUIName>
+        </Item>
+        <Item>
+          <Index>87</Index>
+          <GUIName>Planet 5 Frame 7</GUIName>
+        </Item>
+        <Item>
+          <Index>88</Index>
+          <GUIName>Planet 6 Frame 8</GUIName>
+        </Item>
+        <Item>
+          <Index>89</Index>
+          <GUIName>Planet 6 Frame 9</GUIName>
+        </Item>
+        <Item>
+          <Index>90</Index>
+          <GUIName>Planet 6 Frame 10</GUIName>
+        </Item>
+        <Item>
+          <Index>91</Index>
+          <GUIName>Planet 6 Frame 11</GUIName>
+        </Item>
+        <Item>
+          <Index>92</Index>
+          <GUIName>Planet 6 Frame 12</GUIName>
+        </Item>
+        <Item>
+          <Index>93</Index>
+          <GUIName>Planet 6 Frame 13</GUIName>
+        </Item>
+        <Item>
+          <Index>94</Index>
+          <GUIName>Planet 6 Frame 14</GUIName>
+        </Item>
+        <Item>
+          <Index>95</Index>
+          <GUIName>Planet 6 Frame 15</GUIName>
+        </Item>
+        <Item>
+          <Index>96</Index>
+          <GUIName>Planet 6 Frame 0</GUIName>
+        </Item>
+        <Item>
+          <Index>97</Index>
+          <GUIName>Planet 6 Frame 1</GUIName>
+        </Item>
+        <Item>
+          <Index>98</Index>
+          <GUIName>Planet 6 Frame 2</GUIName>
+        </Item>
+        <Item>
+          <Index>99</Index>
+          <GUIName>Planet 6 Frame 3</GUIName>
+        </Item>
+        <Item>
+          <Index>100</Index>
+          <GUIName>Planet 6 Frame 4</GUIName>
+        </Item>
+        <Item>
+          <Index>101</Index>
+          <GUIName>Planet 6 Frame 5</GUIName>
+        </Item>
+        <Item>
+          <Index>102</Index>
+          <GUIName>Planet 6 Frame 6</GUIName>
+        </Item>
+        <Item>
+          <Index>103</Index>
+          <GUIName>Planet 6 Frame 7</GUIName>
+        </Item>
+        <Item>
+          <Index>104</Index>
+          <GUIName>Planet 6 Frame 8</GUIName>
+        </Item>
+        <Item>
+          <Index>105</Index>
+          <GUIName>Planet 7 Frame 9</GUIName>
+        </Item>
+        <Item>
+          <Index>106</Index>
+          <GUIName>Planet 7 Frame 10</GUIName>
+        </Item>
+        <Item>
+          <Index>107</Index>
+          <GUIName>Planet 7 Frame 11</GUIName>
+        </Item>
+        <Item>
+          <Index>108</Index>
+          <GUIName>Planet 7 Frame 12</GUIName>
+        </Item>
+        <Item>
+          <Index>109</Index>
+          <GUIName>Planet 7 Frame 13</GUIName>
+        </Item>
+        <Item>
+          <Index>110</Index>
+          <GUIName>Planet 7 Frame 14</GUIName>
+        </Item>
+        <Item>
+          <Index>111</Index>
+          <GUIName>Planet 7 Frame 15</GUIName>
+        </Item>
+        <Item>
+          <Index>112</Index>
+          <GUIName>Planet 7 Frame 0</GUIName>
+        </Item>
+        <Item>
+          <Index>113</Index>
+          <GUIName>Planet 7 Frame 1</GUIName>
+        </Item>
+        <Item>
+          <Index>114</Index>
+          <GUIName>Planet 7 Frame 2</GUIName>
+        </Item>
+        <Item>
+          <Index>115</Index>
+          <GUIName>Planet 7 Frame 3</GUIName>
+        </Item>
+        <Item>
+          <Index>116</Index>
+          <GUIName>Planet 7 Frame 4</GUIName>
+        </Item>
+        <Item>
+          <Index>117</Index>
+          <GUIName>Planet 7 Frame 5</GUIName>
+        </Item>
+        <Item>
+          <Index>118</Index>
+          <GUIName>Planet 7 Frame 6</GUIName>
+        </Item>
+        <Item>
+          <Index>119</Index>
+          <GUIName>Planet 7 Frame 7</GUIName>
+        </Item>
+        <Item>
+          <Index>120</Index>
+          <GUIName>Planet 8 Frame 8</GUIName>
+        </Item>
+        <Item>
+          <Index>121</Index>
+          <GUIName>Planet 8 Frame 9</GUIName>
+        </Item>
+        <Item>
+          <Index>122</Index>
+          <GUIName>Planet 8 Frame 10</GUIName>
+        </Item>
+        <Item>
+          <Index>123</Index>
+          <GUIName>Planet 8 Frame 11</GUIName>
+        </Item>
+        <Item>
+          <Index>124</Index>
+          <GUIName>Planet 8 Frame 12</GUIName>
+        </Item>
+        <Item>
+          <Index>125</Index>
+          <GUIName>Planet 8 Frame 13</GUIName>
+        </Item>
+        <Item>
+          <Index>126</Index>
+          <GUIName>Planet 8 Frame 14</GUIName>
+        </Item>
+        <Item>
+          <Index>127</Index>
+          <GUIName>Planet 8 Frame 15</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>18</Id>
+      <FileName>EFSUNIT.BIN</FileName>
+      <GUIName>EFSUNIT</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>32</Width>
+        <Height>32</Height>
+      </ItemDimensions>
+      <Notes>Units Icons</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Grappler</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Blow Ship</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Spore Ship</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Pod Ship</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>Shroud Weaver</GUIName>
+        </Item>
+        <Item>
+          <Index>5</Index>
+          <GUIName>Veil Seeker</GUIName>
+        </Item>
+        <Item>
+          <Index>6</Index>
+          <GUIName>Destroyer</GUIName>
+        </Item>
+        <Item>
+          <Index>7</Index>
+          <GUIName>Quick Mercy</GUIName>
+        </Item>
+        <Item>
+          <Index>8</Index>
+          <GUIName>Deathmate</GUIName>
+        </Item>
+        <Item>
+          <Index>9</Index>
+          <GUIName>Vau Carrier</GUIName>
+        </Item>
+        <Item>
+          <Index>10</Index>
+          <GUIName>Vau Transport</GUIName>
+        </Item>
+        <Item>
+          <Index>11</Index>
+          <GUIName>Stealth Ship</GUIName>
+        </Item>
+        <Item>
+          <Index>12</Index>
+          <GUIName>Cadiz Dreadnought</GUIName>
+        </Item>
+        <Item>
+          <Index>13</Index>
+          <GUIName>Vlad Cruiser</GUIName>
+        </Item>
+        <Item>
+          <Index>14</Index>
+          <GUIName>Destroyer</GUIName>
+        </Item>
+        <Item>
+          <Index>15</Index>
+          <GUIName>Frigate</GUIName>
+        </Item>
+        <Item>
+          <Index>16</Index>
+          <GUIName>Carrier</GUIName>
+        </Item>
+        <Item>
+          <Index>17</Index>
+          <GUIName>Space Fighter</GUIName>
+        </Item>
+        <Item>
+          <Index>18</Index>
+          <GUIName>Space Torp Bmbr</GUIName>
+        </Item>
+        <Item>
+          <Index>19</Index>
+          <GUIName>Assault Lander</GUIName>
+        </Item>
+        <Item>
+          <Index>20</Index>
+          <GUIName>Freighter</GUIName>
+        </Item>
+        <Item>
+          <Index>21</Index>
+          <GUIName>Bulk Hauler</GUIName>
+        </Item>
+        <Item>
+          <Index>22</Index>
+          <GUIName>Starbase</GUIName>
+        </Item>
+        <Item>
+          <Index>23</Index>
+          <GUIName>Submarine</GUIName>
+        </Item>
+        <Item>
+          <Index>24</Index>
+          <GUIName>Naval Battleship</GUIName>
+        </Item>
+        <Item>
+          <Index>25</Index>
+          <GUIName>Naval Destroyer</GUIName>
+        </Item>
+        <Item>
+          <Index>26</Index>
+          <GUIName>Naval Carrier</GUIName>
+        </Item>
+        <Item>
+          <Index>27</Index>
+          <GUIName>Naval Transport</GUIName>
+        </Item>
+        <Item>
+          <Index>28</Index>
+          <GUIName>Sceptor</GUIName>
+        </Item>
+        <Item>
+          <Index>29</Index>
+          <GUIName>Holy Relic</GUIName>
+        </Item>
+        <Item>
+          <Index>30</Index>
+          <GUIName>Vau Fighter</GUIName>
+        </Item>
+        <Item>
+          <Index>31</Index>
+          <GUIName>Vau Mandarin</GUIName>
+        </Item>
+        <Item>
+          <Index>32</Index>
+          <GUIName>Vau Guard</GUIName>
+        </Item>
+        <Item>
+          <Index>33</Index>
+          <GUIName>Vau Jet Bike</GUIName>
+        </Item>
+        <Item>
+          <Index>34</Index>
+          <GUIName>Vau War-Skif</GUIName>
+        </Item>
+        <Item>
+          <Index>35</Index>
+          <GUIName>Vau War-Tower</GUIName>
+        </Item>
+        <Item>
+          <Index>36</Index>
+          <GUIName>Vau Warrior</GUIName>
+        </Item>
+        <Item>
+          <Index>37</Index>
+          <GUIName>Vau Worker</GUIName>
+        </Item>
+        <Item>
+          <Index>38</Index>
+          <GUIName>Symbiot Spitter</GUIName>
+        </Item>
+        <Item>
+          <Index>39</Index>
+          <GUIName>Symbiot Minder</GUIName>
+        </Item>
+        <Item>
+          <Index>40</Index>
+          <GUIName>Symbiot Tank</GUIName>
+        </Item>
+        <Item>
+          <Index>41</Index>
+          <GUIName>Symbiot Arcer</GUIName>
+        </Item>
+        <Item>
+          <Index>42</Index>
+          <GUIName>Symbiot Butcher</GUIName>
+        </Item>
+        <Item>
+          <Index>43</Index>
+          <GUIName>Symbiot Reaver</GUIName>
+        </Item>
+        <Item>
+          <Index>44</Index>
+          <GUIName>Symbiot Nester</GUIName>
+        </Item>
+        <Item>
+          <Index>45</Index>
+          <GUIName>Noble</GUIName>
+        </Item>
+        <Item>
+          <Index>46</Index>
+          <GUIName>Warlock</GUIName>
+        </Item>
+        <Item>
+          <Index>47</Index>
+          <GUIName>Inquisitor</GUIName>
+        </Item>
+        <Item>
+          <Index>48</Index>
+          <GUIName>Dervish</GUIName>
+        </Item>
+        <Item>
+          <Index>49</Index>
+          <GUIName>Assassin</GUIName>
+        </Item>
+        <Item>
+          <Index>50</Index>
+          <GUIName>Merchant</GUIName>
+        </Item>
+        <Item>
+          <Index>51</Index>
+          <GUIName>Officer Corp</GUIName>
+        </Item>
+        <Item>
+          <Index>52</Index>
+          <GUIName>Clergy</GUIName>
+        </Item>
+        <Item>
+          <Index>53</Index>
+          <GUIName>Engineer</GUIName>
+        </Item>
+        <Item>
+          <Index>54</Index>
+          <GUIName>Special Forces</GUIName>
+        </Item>
+        <Item>
+          <Index>55</Index>
+          <GUIName>Rebel Partisans</GUIName>
+        </Item>
+        <Item>
+          <Index>56</Index>
+          <GUIName>PTS Laser Canon</GUIName>
+        </Item>
+        <Item>
+          <Index>57</Index>
+          <GUIName>PTS Missile Launcher</GUIName>
+        </Item>
+        <Item>
+          <Index>58</Index>
+          <GUIName>Scout Tank</GUIName>
+        </Item>
+        <Item>
+          <Index>59</Index>
+          <GUIName>Med Tank</GUIName>
+        </Item>
+        <Item>
+          <Index>60</Index>
+          <GUIName>Anti-infantry Tank</GUIName>
+        </Item>
+        <Item>
+          <Index>61</Index>
+          <GUIName>Mega Tank</GUIName>
+        </Item>
+        <Item>
+          <Index>62</Index>
+          <GUIName>Hover Tank</GUIName>
+        </Item>
+        <Item>
+          <Index>63</Index>
+          <GUIName>Hover Tank Killer</GUIName>
+        </Item>
+        <Item>
+          <Index>64</Index>
+          <GUIName>Hover Anti Air</GUIName>
+        </Item>
+        <Item>
+          <Index>65</Index>
+          <GUIName>Tank Killer</GUIName>
+        </Item>
+        <Item>
+          <Index>66</Index>
+          <GUIName>Hvy Tank Killer</GUIName>
+        </Item>
+        <Item>
+          <Index>67</Index>
+          <GUIName>SP Anti Air</GUIName>
+        </Item>
+        <Item>
+          <Index>68</Index>
+          <GUIName>SP Artillery</GUIName>
+        </Item>
+        <Item>
+          <Index>69</Index>
+          <GUIName>Assault Gun</GUIName>
+        </Item>
+        <Item>
+          <Index>70</Index>
+          <GUIName>Rocket Art</GUIName>
+        </Item>
+        <Item>
+          <Index>71</Index>
+          <GUIName>Pestulator Artillery</GUIName>
+        </Item>
+        <Item>
+          <Index>72</Index>
+          <GUIName>Stealth Tank</GUIName>
+        </Item>
+        <Item>
+          <Index>73</Index>
+          <GUIName>Gunship</GUIName>
+        </Item>
+        <Item>
+          <Index>74</Index>
+          <GUIName>Atmos Fighter</GUIName>
+        </Item>
+        <Item>
+          <Index>75</Index>
+          <GUIName>Divebomber</GUIName>
+        </Item>
+        <Item>
+          <Index>76</Index>
+          <GUIName>Strategic Bmber</GUIName>
+        </Item>
+        <Item>
+          <Index>77</Index>
+          <GUIName>Marauder Lgn</GUIName>
+        </Item>
+        <Item>
+          <Index>78</Index>
+          <GUIName>Ranger Lgn</GUIName>
+        </Item>
+        <Item>
+          <Index>79</Index>
+          <GUIName>Xyll Warbeast</GUIName>
+        </Item>
+        <Item>
+          <Index>80</Index>
+          <GUIName>Shock Lgn</GUIName>
+        </Item>
+        <Item>
+          <Index>81</Index>
+          <GUIName>Assault Lgn</GUIName>
+        </Item>
+        <Item>
+          <Index>82</Index>
+          <GUIName>Armor Lgn</GUIName>
+        </Item>
+        <Item>
+          <Index>83</Index>
+          <GUIName>Infantry Lgn</GUIName>
+        </Item>
+        <Item>
+          <Index>84</Index>
+          <GUIName>Militia Lgn</GUIName>
+        </Item>
+        <Item>
+          <Index>85</Index>
+          <GUIName>Anti-Aircraft</GUIName>
+        </Item>
+        <Item>
+          <Index>86</Index>
+          <GUIName>Anti-Tank Gun</GUIName>
+        </Item>
+        <Item>
+          <Index>87</Index>
+          <GUIName>Artillery</GUIName>
+        </Item>
+        <Item>
+          <Index>88</Index>
+          <GUIName>Plague Bomb</GUIName>
+        </Item>
+        <Item>
+          <Index>89</Index>
+          <GUIName>Scientist</GUIName>
+        </Item>
+        <Item>
+          <Index>90</Index>
+          <GUIName>Peasant</GUIName>
+        </Item>
+        <Item>
+          <Index>91</Index>
+          <GUIName>Cargo</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>19</Id>
+      <FileName>EYE.BIN</FileName>
+      <GUIName>EYE</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>120</Width>
+        <Height>123</Height>
+      </ItemDimensions>
+      <Notes>Imperial Eye factions banners</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Vacant banner</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>LI-HALAN banner</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>HAZAT banner</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>DECADOS banner</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>HAWKWOOD banner</GUIName>
+        </Item>
+        <Item>
+          <Index>5</Index>
+          <GUIName>AL-MALIK banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>1A</Id>
+      <FileName>EYE100.BIN</FileName>
+      <GUIName>EYE100</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Notes>Eye banner</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Imperial Eye Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>1B</Id>
+      <FileName>FIRE.BIN</FileName>
+      <GUIName>FIRE</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>29</Width>
+        <Height>32</Height>
+      </ItemDimensions>
+      <Notes>Explosion Animation</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Frame 0</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Frame 1</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Frame 2</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Frame 3</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>1C</Id>
+      <FileName>FIST.BIN</FileName>
+      <GUIName>FIST</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>32</Width>
+        <Height>32</Height>
+      </ItemDimensions>
+      <Notes>Fist overlaid on units rising in revolt.</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Revolt fist</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>1D</Id>
+      <FileName>FLAG.BIN</FileName>
+      <GUIName>FLAG</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>40</Width>
+        <Height>40</Height>
+      </ItemDimensions>
+      <Notes>Flag overlaid on surrendered units in combat.</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Surrender Flag</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>1E</Id>
+      <FileName>FLEET.BIN</FileName>
+      <GUIName>FLEET</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>120</Width>
+        <Height>123</Height>
+      </ItemDimensions>
+      <Notes>Imperial Fleet factions banners</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Vacant banner</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>LI-HALAN banner</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>HAZAT banner</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>DECADOS banner</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>HAWKWOOD banner</GUIName>
+        </Item>
+        <Item>
+          <Index>5</Index>
+          <GUIName>AL-MALIK banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>1F</Id>
+      <FileName>FLET100.BIN</FileName>
+      <GUIName>FLET100</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Notes>Fleet banner</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>20</Id>
+      <FileName>HOUSE1.BIN</FileName>
+      <GUIName>HOUSE1</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Notes>Li-Halan banner</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Li-Halan Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>21</Id>
+      <FileName>HOUSE2.BIN</FileName>
+      <GUIName>HOUSE2</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Notes>The Hazat banner</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Hazat Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>22</Id>
+      <FileName>HOUSE3.BIN</FileName>
+      <GUIName>HOUSE3</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Notes>Decados banner</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Decados Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>23</Id>
+      <FileName>HOUSE4.BIN</FileName>
+      <GUIName>HOUSE4</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Notes>Hawkwood banner</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Hawkwood Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>24</Id>
+      <FileName>HOUSE5.BIN</FileName>
+      <GUIName>HOUSE5</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Notes>Al-Malik banner</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Al-Malik Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>25</Id>
+      <FileName>JUMP.BIN</FileName>
+      <GUIName>JUMP</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>34</Width>
+        <Height>34</Height>
+      </ItemDimensions>
+      <Notes>Jumpgate Animation</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Frame 0</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Frame 1</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Frame 2</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Frame 3</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>Frame 4</GUIName>
+        </Item>
+        <Item>
+          <Index>5</Index>
+          <GUIName>Frame 5</GUIName>
+        </Item>
+        <Item>
+          <Index>6</Index>
+          <GUIName>Frame 6</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>26</Id>
+      <FileName>PLYCOMP.BIN</FileName>
+      <GUIName>PLYCOMP</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>48</Width>
+        <Height>64</Height>
+      </ItemDimensions>
+      <Notes>Computer player icon (new game setup)</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Computer player</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>27</Id>
+      <FileName>PLYHUMAN.BIN</FileName>
+      <GUIName>PLYHUMAN</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>48</Width>
+        <Height>64</Height>
+      </ItemDimensions>
+      <Notes>Human player icon (new game setup)</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Human player</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>28</Id>
+      <FileName>POD.BIN</FileName>
+      <GUIName>POD</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>24</Width>
+        <Height>9</Height>
+      </ItemDimensions>
+      <Notes>Cargo pod icon</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Cargo pod</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>29</Id>
+      <FileName>PORTRAIT.BIN</FileName>
+      <GUIName>PORTRAIT</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>250</Width>
+        <Height>200</Height>
+      </ItemDimensions>
+      <Notes>House leaders portraits</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>LI-HALAN 1</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>HAZAT 1</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>DECADOS 1</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>HAWKWOOD 1</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>AL-MALIK 1</GUIName>
+        </Item>
+        <Item>
+          <Index>5</Index>
+          <GUIName>LI-HALAN 2</GUIName>
+        </Item>
+        <Item>
+          <Index>6</Index>
+          <GUIName>HAZAT 2</GUIName>
+        </Item>
+        <Item>
+          <Index>7</Index>
+          <GUIName>DECADOS 2</GUIName>
+        </Item>
+        <Item>
+          <Index>8</Index>
+          <GUIName>HAWKWOOD 2</GUIName>
+        </Item>
+        <Item>
+          <Index>9</Index>
+          <GUIName>AL-MALIK 2</GUIName>
+        </Item>
+        <Item>
+          <Index>10</Index>
+          <GUIName>LI-HALAN 3</GUIName>
+        </Item>
+        <Item>
+          <Index>11</Index>
+          <GUIName>HAZAT 3</GUIName>
+        </Item>
+        <Item>
+          <Index>12</Index>
+          <GUIName>DECADOS 3</GUIName>
+        </Item>
+        <Item>
+          <Index>13</Index>
+          <GUIName>HAWKWOOD 3</GUIName>
+        </Item>
+        <Item>
+          <Index>14</Index>
+          <GUIName>AL-MALIK 3</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>2A</Id>
+      <FileName>PTRATCHU.BIN</FileName>
+      <GUIName>PTRATCHU</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>250</Width>
+        <Height>200</Height>
+      </ItemDimensions>
+      <Notes>Church leaders portraits</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Orthodox</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Amalthean</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Eskatonic</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Incarnates</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>Avestite</GUIName>
+        </Item>
+        <Item>
+          <Index>5</Index>
+          <GUIName>Brother Battle</GUIName>
+        </Item>
+        <Item>
+          <Index>6</Index>
+          <GUIName>Mendicant</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>2B</Id>
+      <FileName>PTRATLEA.BIN</FileName>
+      <GUIName>PTRATLEA</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>250</Width>
+        <Height>200</Height>
+      </ItemDimensions>
+      <Notes>League leader portrait</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Leaguemeister</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>2C</Id>
+      <FileName>PTRATTUT.BIN</FileName>
+      <GUIName>PTRATTUT</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>250</Width>
+        <Height>200</Height>
+      </ItemDimensions>
+      <Notes>Advisor portrait</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Advisor</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>2D</Id>
+      <FileName>PTRATVAU.BIN</FileName>
+      <GUIName>PTRATVAU</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>250</Width>
+        <Height>200</Height>
+      </ItemDimensions>
+      <Notes>Vau portrait</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Vau</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>2E</Id>
+      <FileName>REGENT.BIN</FileName>
+      <GUIName>REGENT</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>120</Width>
+        <Height>123</Height>
+      </ItemDimensions>
+      <Notes>Regency House banners.</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Vacant banner</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>LI-HALAN banner</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>HAZAT banner</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>DECADOS banner</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>HAWKWOOD banner</GUIName>
+        </Item>
+        <Item>
+          <Index>5</Index>
+          <GUIName>AL-MALIK banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>2F</Id>
+      <FileName>RGT100.BIN</FileName>
+      <GUIName>RGT100</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Notes>Regency banner.</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Regency Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>30</Id>
+      <FileName>SCROLL.BIN</FileName>
+      <GUIName>SCROLL</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>16</Width>
+        <Height>16</Height>
+      </ItemDimensions>
+      <Notes>Scrollbar Elements.</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Arrow up</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>Arrow right</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>Arrow down</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>Arrow left</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>Handle</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>31</Id>
+      <FileName>SHIELD.BIN</FileName>
+      <GUIName>SHIELD</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>5</Width>
+        <Height>6</Height>
+      </ItemDimensions>
+      <Notes>Unknown shield.</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Unknown</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>32</Id>
+      <FileName>SKULL.BIN</FileName>
+      <GUIName>SKULL</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>40</Width>
+        <Height>40</Height>
+      </ItemDimensions>
+      <Notes>Skull overlaid on dead units in combat.</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Combat Skull</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>33</Id>
+      <FileName>STIG100.BIN</FileName>
+      <GUIName>STIG100</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Notes>Stigmata Garrison banner</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Stigmata Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>34</Id>
+      <FileName>STIGMATA.BIN</FileName>
+      <GUIName>STIGMATA</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>120</Width>
+        <Height>123</Height>
+      </ItemDimensions>
+      <Notes>Stigmata Garrison factions banners.</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Vacant banner</GUIName>
+        </Item>
+        <Item>
+          <Index>1</Index>
+          <GUIName>LI-HALAN banner</GUIName>
+        </Item>
+        <Item>
+          <Index>2</Index>
+          <GUIName>HAZAT banner</GUIName>
+        </Item>
+        <Item>
+          <Index>3</Index>
+          <GUIName>DECADOS banner</GUIName>
+        </Item>
+        <Item>
+          <Index>4</Index>
+          <GUIName>HAWKWOOD banner</GUIName>
+        </Item>
+        <Item>
+          <Index>5</Index>
+          <GUIName>AL-MALIK banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>35</Id>
+      <FileName>SYM100.BIN</FileName>
+      <GUIName>SYM100</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>100</Width>
+        <Height>100</Height>
+      </ItemDimensions>
+      <Notes>Symbiots banner</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Symbiots Banner</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>36</Id>
+      <FileName>GLIMMER.BIN</FileName>
+      <GUIName>GLIMMER</GUIName>
+      <ItemDimensions Format="Hexagon">
+        <Width>48</Width>
+        <Height>40</Height>
+      </ItemDimensions>
+      <Notes>Hexagonal shield overlay</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Shield overlay</GUIName>
+        </Item>
+      </Items>
+    </Preset>
+    <Preset>
+      <Id>37</Id>
       <FileName>STRUCT0.BIN</FileName>
       <GUIName>STRUCT0</GUIName>
       <ItemDimensions Format="Hexagon">
         <Width>48</Width>
         <Height>40</Height>
-              </ItemDimensions>
-      <Notes></Notes>
-            <Items>
+      </ItemDimensions>
+      <Notes>Hexagonal city tiles for NORMAL planets.</Notes>
+      <Items>
         <Item>
           <Index>0</Index>
           <GUIName>PALACE</GUIName>
@@ -2267,14 +2325,15 @@
       </Items>
     </Preset>
     <Preset>
+      <Id>38</Id>
       <FileName>STRUCT1.BIN</FileName>
       <GUIName>STRUCT1</GUIName>
       <ItemDimensions Format="Hexagon">
         <Width>48</Width>
         <Height>40</Height>
-              </ItemDimensions>
-      <Notes></Notes>
-            <Items>
+      </ItemDimensions>
+      <Notes>Hexagonal city tiles for CITY planets.</Notes>
+      <Items>
         <Item>
           <Index>0</Index>
           <GUIName>PALACE</GUIName>
@@ -2406,14 +2465,15 @@
       </Items>
     </Preset>
     <Preset>
+      <Id>39</Id>
       <FileName>STRUCT2.BIN</FileName>
       <GUIName>STRUCT2</GUIName>
       <ItemDimensions Format="Hexagon">
         <Width>48</Width>
         <Height>40</Height>
-              </ItemDimensions>
-      <Notes></Notes>
-            <Items>
+      </ItemDimensions>
+      <Notes>Hexagonal city tiles for ICE planets.</Notes>
+      <Items>
         <Item>
           <Index>0</Index>
           <GUIName>PALACE</GUIName>
@@ -2545,14 +2605,15 @@
       </Items>
     </Preset>
     <Preset>
+      <Id>3A</Id>
       <FileName>STRUCT3.BIN</FileName>
       <GUIName>STRUCT3</GUIName>
       <ItemDimensions Format="Hexagon">
         <Width>48</Width>
         <Height>40</Height>
-              </ItemDimensions>
-      <Notes></Notes>
-            <Items>
+      </ItemDimensions>
+      <Notes>Hexagonal city tiles for JUNGLE planets.</Notes>
+      <Items>
         <Item>
           <Index>0</Index>
           <GUIName>PALACE</GUIName>
@@ -2684,14 +2745,15 @@
       </Items>
     </Preset>
     <Preset>
+      <Id>3B</Id>
       <FileName>STRUCT4.BIN</FileName>
       <GUIName>STRUCT4</GUIName>
       <ItemDimensions Format="Hexagon">
         <Width>48</Width>
         <Height>40</Height>
-              </ItemDimensions>
-      <Notes></Notes>
-            <Items>
+      </ItemDimensions>
+      <Notes>Hexagonal city tiles for BARREN planets.</Notes>
+      <Items>
         <Item>
           <Index>0</Index>
           <GUIName>PALACE</GUIName>
@@ -2823,14 +2885,18 @@
       </Items>
     </Preset>
     <Preset>
+      <Id>3C</Id>
       <FileName>EFSTILE0.BIN</FileName>
       <GUIName>EFSTILE0</GUIName>
       <ItemDimensions Format="Hexagon">
         <Width>48</Width>
         <Height>40</Height>
-              </ItemDimensions>
-      <Notes></Notes>
-            <Items>
+      </ItemDimensions>
+      <Notes>Hexagonal terrain tiles for NORMAL planets. 
+            The item names denote which sides of the hexagon link with neighbouring terrain. 
+            0 indicates an empty side, 1 indicates a link. 
+            For Deltas, 2 indicates a river link. </Notes>
+      <Items>
         <Item>
           <Index>0</Index>
           <GUIName>FOREST_000011_a</GUIName>
@@ -3370,14 +3436,20 @@
       </Items>
     </Preset>
     <Preset>
+      <Id>3D</Id>
       <FileName>EFSTILE1.BIN</FileName>
       <GUIName>EFSTILE1</GUIName>
       <ItemDimensions Format="Hexagon">
         <Width>48</Width>
         <Height>40</Height>
-              </ItemDimensions>
-      <Notes></Notes>
-            <Items>
+      </ItemDimensions>
+      <Notes>
+        Hexagonal terrain tiles for CITY planets.
+        The item names denote which sides of the hexagon link with neighbouring terrain. 
+        0 indicates an empty side, 1 indicates a link.
+        For Deltas, 2 indicates a river link.
+      </Notes>
+      <Items>
         <Item>
           <Index>0</Index>
           <GUIName>FOREST_000011_a</GUIName>
@@ -3917,14 +3989,20 @@
       </Items>
     </Preset>
     <Preset>
+      <Id>3E</Id>
       <FileName>EFSTILE2.BIN</FileName>
       <GUIName>EFSTILE2</GUIName>
       <ItemDimensions Format="Hexagon">
         <Width>48</Width>
         <Height>40</Height>
-              </ItemDimensions>
-      <Notes></Notes>
-            <Items>
+      </ItemDimensions>
+      <Notes>
+        Hexagonal terrain tiles for ICE planets.
+        The item names denote which sides of the hexagon link with neighbouring terrain. 
+        0 indicates an empty side, 1 indicates a link.
+        For Deltas, 2 indicates a river link.
+      </Notes>
+      <Items>
         <Item>
           <Index>0</Index>
           <GUIName>FOREST_000011_a</GUIName>
@@ -4464,14 +4542,20 @@
       </Items>
     </Preset>
     <Preset>
+      <Id>3F</Id>
       <FileName>EFSTILE3.BIN</FileName>
       <GUIName>EFSTILE3</GUIName>
       <ItemDimensions Format="Hexagon">
         <Width>48</Width>
         <Height>40</Height>
-              </ItemDimensions>
-      <Notes></Notes>
-            <Items>
+      </ItemDimensions>
+      <Notes>
+        Hexagonal terrain tiles for JUNGLE planets.
+        The item names denote which sides of the hexagon link with neighbouring terrain. 
+        0 indicates an empty side, 1 indicates a link.
+        For Deltas, 2 indicates a river link.
+      </Notes>
+      <Items>
         <Item>
           <Index>0</Index>
           <GUIName>FOREST_000011_a</GUIName>
@@ -5011,14 +5095,20 @@
       </Items>
     </Preset>
     <Preset>
+      <Id>40</Id>
       <FileName>EFSTILE4.BIN</FileName>
       <GUIName>EFSTILE4</GUIName>
       <ItemDimensions Format="Hexagon">
         <Width>48</Width>
         <Height>40</Height>
-	  </ItemDimensions>
-      <Notes></Notes>
-            <Items>
+      </ItemDimensions>
+      <Notes>
+        Hexagonal terrain tiles for BARREN planets.
+        The item names denote which sides of the hexagon link with neighbouring terrain. 
+        0 indicates an empty side, 1 indicates a link.
+        For Deltas, 2 indicates a river link.
+      </Notes>
+      <Items>
         <Item>
           <Index>0</Index>
           <GUIName>FOREST_000011_a</GUIName>
@@ -5558,28 +5648,30 @@
       </Items>
     </Preset>
     <Preset>
-		  <FileName>couple.bin</FileName>
-		  <GUIName>couple</GUIName>
-		  <ItemDimensions Format="Rectangle">
-			  <Width>20</Width>
-			  <Height>32</Height>
-		  </ItemDimensions>
-		  <Notes />
-			<Items>
-				  <Item>
-				    <Index>0</Index>
-				    <GUIName>Unknown</GUIName>
-				  </Item>
-			</Items>
-		</Preset>
+      <Id>41</Id>
+      <FileName>couple.bin</FileName>
+      <GUIName>couple</GUIName>
+      <ItemDimensions Format="Rectangle">
+        <Width>20</Width>
+        <Height>32</Height>
+      </ItemDimensions>
+      <Notes>Link between transport and carrier unit</Notes>
+      <Items>
+        <Item>
+          <Index>0</Index>
+          <GUIName>Transport link</GUIName>
+        </Item>
+      </Items>
+    </Preset>
     <Preset>
+      <Id>42</Id>
       <FileName>Explore.bin</FileName>
       <GUIName>Explore</GUIName>
       <ItemDimensions Format="Hexagon">
         <Width>48</Width>
         <Height>40</Height>
       </ItemDimensions>
-      <Notes></Notes>
+      <Notes>Unit path overlay.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -5627,5 +5719,5 @@
         </Item>
       </Items>
     </Preset>
-	</Presets>
+  </Presets>
 </Root>

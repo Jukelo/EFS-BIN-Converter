@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--  This file defines formatting data for (almost) all of the game's .BIN files.
-      
-      The .BIN files store data for graphical elements such as banners, portraits, unit icons, tiles, animation frames etc...
-      Each byte stores the color for one pixel, indexed against the game's 256 color palette.
+<!--  This file defines formatting data for (almost) all of the game's .BIN files. Both import and export functions of the program rely extensively on this.
+      Both GUIName fields are safe to change, but there should be little reason for the user to alter anything else here unless an (unlikely) update 
+      to the game changes the sizes of files and/or items within.
+
+
+      The game uses .BIN files to store data for graphical elements such as banners, portraits, unit icons, tiles, animation frames etc...
+      Each byte of those files stores the color for one pixel, indexed against the game's 256 color palette.
       As the .BIN files themselves contain no data on how many elements are arrayed inside, nor how these elements or their pixels are laid out,
-      such information needs to be explicited here for the program to know how to read and slice up each file.
+      such information needs to be explicited here for the program to know how to find what and where.
       
       Preset:               Each preset is associated with a .BIN file. It contains information describing what graphical elements ('items') the file contain.     
       
         .Id:                A unique two-digit alphanumerical identifier for the preset.
-                            This is used for naming the exported files, as well as selecting the right preset when importing .bmp files for conversion to .bin. 
-        .FileName:          The name of the .BIN file. Used by the program to automatically detect which preset to load when the user selects a .BIN file.
+                              This is used for naming the exported files, as well as selecting the right preset when importing .bmp files for conversion to .bin. 
+        .FileName:          The name of the .BIN file. Used by the program to automatically select a preset the user loads a .BIN file.
         .GUIName:           The name of the preset in the interface. This will also show in the file name, so avoid characters forbidden by the Windows file system.
       
       ItemDimensions        
@@ -18,18 +21,16 @@
                               If Rectangle, Width is assumed constant for each row of pixels. 
                               For hexagonal items, the program uses a variable width (currently hardcoded).
         .Width & .Height:   The dimensions in pixels of individual elements. All elements in a given file are assumed to have identical dimensions.
-                              For rectangular items, as one pixel equals one byte in the file, the size of each element in bytes is simply Width * Height.
-                            
-                            As of v0.1.0, the dimensions for the hexagonal elements supported by the program (items in GLIMMER.BIN, EFSTILE*.BIN, STRUCT*.BIN)
-                              are hardcoded into the program. The width and height values provided here are ignored for these items (the xml elements are required nontheless) 
-                            There is very little reason to change the dimensions value provided here unless an (unlikely) update to the game changes the way it reads from the files
+                              For rectangular items, as one pixel equals one byte in the file, the length of each element in bytes is simply Width * Height.
+                             The dimensions for the hexagonal elements supported by the program (items in GLIMMER.BIN, Explore.bin, EFSTILE*.BIN, STRUCT*.BIN)
+                              are hardcoded into the program. The width and height values provided here are ignored for these items (the xml elements are required regardless) 
       
-      Item                   
-        .Index:             A unique zero-based decimal ordinal for each item in the file. The graphical element's byte position in the file would therefore start at
-                              index * width * height for rectangular items. It would end at ((index+1) * width * height -1).
-                              Hexagonal items are currently hardcoded at a length of 1520 bytes, the offset is therefore 1520 * index.
+      Item                  Defines a contiguous group of bytes within the file.
+        .Index:             A unique zero-based index indicating the position of each item in the file.
+                              A graphical element's first byte in the file would start at the position (index * width * height) for rectangular items. It would end at ((index+1) * width * height -1).
+                            Hexagonal items are currently hardcoded at a length of 1520 bytes, the offset is therefore (1520 * index).
                             The decimal value of Index is suffixed to the preset identifier when naming an exported file  (leading zero added as needed).
-                              
+                              The maximum value for Index is 999 (the program will happily allow an item at index 999 for Portraits.bin, meaning it will try to draw a 250x200000 pixels iamge, so use with caution..)
         .GUIName:           The name of the item in the interface. This may also show in the file name, so avoid characters forbidden by the Windows file system.
                               
 -->
@@ -5653,7 +5654,7 @@
       <GUIName>couple</GUIName>
       <ItemDimensions Format="Rectangle">
         <Width>20</Width>
-        <Height>32</Height>
+        <Height>31</Height>
       </ItemDimensions>
       <Notes>Link between transport and carrier unit</Notes>
       <Items>

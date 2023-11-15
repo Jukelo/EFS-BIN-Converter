@@ -1,3 +1,15 @@
+###### v0.2.1 2023-11-09
+
+* Fixed changing preset would fail to re-run file recognition. Changing preset will now update imported items names and offset according to the new preset. Offsets are only adjusted if set to zero. #2
+* Fixed exported images and saved ```.bin``` files are now sized according to the maximum item index defined in ```Presets.xml``` instead of the number of items. 
+* Fixed crash when importing ```.bmp``` file with wrong size while a preset with hexagonal format is selected #17
+* Fixed wrong item name when imported file with index matching no item for the recognized preset.
+* Last used directories for the various file dialogs are now saved per dialog, somewhere in AppData probably.
+* Presets drop down lists displayed in alphabetical order rather than the order in which they appear in ```Presets.xml```
+* Added warning in Export tab when a mismatch occurs between the loaded file's length and the total length of all items defined in the preset.
+* Added warning in Export tab when no preset was found for the loaded file.
+
+---
 ###### v0.2.0 2023-11-09
 
 * Updated the naming system for newly exported ```.bmp``` files : a 5-characters string made from the preset id and the item index identifies each image for automatic selection of preset and offset when importing images. #9

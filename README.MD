@@ -50,10 +50,10 @@ A 5-characters string is prefixed to the name of exported ```.bmp``` files in th
 
 *The rest of the file name is ignored by the importer and can be changed by the modder without consequence.*
 
-The string is composed of two parts: the first 2 characters make up the unique identifier for the preset associated with the ```.bin``` file from which the image was exported, as defined in ```Presets.xml```. The next 3 (decimal) digits are the item's index among all other items in the ```.bin```.
-Exporting the ```Noble``` item (index 45) from ```EFSUNITS.BIN``` (Id 18) would therefore produce a file named ```18045_EFSUNIT_Noble.BMP``` where 18045 uniquely identifies the noble for the importer. 
+The string is composed of two parts: the first 2 characters make up the unique identifier for the preset associated with the ```.bin``` file from which the image was exported, as defined in ```Presets.xml```. The next 3 (decimal) digits are the item's index, defining its position within the .bin file.
+Exporting the ```Noble``` item (index 45) from ```EFSUNITS.BIN``` (Id 18) would therefore produce a file named ```18045_EFSUNIT_Noble.BMP``` where 18045 uniquely identifies the Noble for the importer. The importer will therefore know to load the EFSUNIT preset, and to insert the Noble at offset  46080 in the entries table (1024 \* 45).
 
-If the importer fails to recognize a ```.bmp``` file's identifier, it will position the file's pixel data at the beginning of the pixel buffer, along with every other unrecognized file's, forcing the user to manually assign preset and offset.
+If the importer fails to recognize a ```.bmp``` file's identifier, it will position the image's pixel data at the beginning of the pixel buffer, along with every other unrecognized file's, forcing the user to manually assign preset and offset.
 
 
 [^1]: The only supported format is 256 color BMP, indexed against the game's color palette. 

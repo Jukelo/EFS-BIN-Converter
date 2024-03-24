@@ -52,7 +52,7 @@
         <Width>120</Width>
         <Height>123</Height>
       </ItemDimensions>
-      <Notes />
+      <Notes>Regent banner (no house).</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -68,7 +68,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
-      <Notes />
+      <Notes>Church banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -84,6 +84,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
+	    <Notes>League banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -99,6 +100,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
+	    <Notes>Rebels Banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -114,6 +116,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
+	    <Notes>Vau Banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -129,7 +132,7 @@
         <Width>34</Width>
         <Height>29</Height>
       </ItemDimensions>
-      <Notes>Resources icons</Notes>
+      <Notes>Resources icons.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -193,7 +196,7 @@
         <Width>27</Width>
         <Height>27</Height>
       </ItemDimensions>
-      <Notes>Diplomatic screen peace and war icons</Notes>
+      <Notes>Diplomatic screen peace and war icons.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -213,7 +216,7 @@
         <Width>23</Width>
         <Height>23</Height>
       </ItemDimensions>
-      <Notes>Starmap button</Notes>
+      <Notes>Starmap button.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -237,7 +240,7 @@
         <Width>23</Width>
         <Height>41</Height>
       </ItemDimensions>
-      <Notes>Launch ships into space</Notes>
+      <Notes>Launch ships into space.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -265,7 +268,7 @@
         <Width>30</Width>
         <Height>14</Height>
       </ItemDimensions>
-      <Notes>Group all button</Notes>
+      <Notes>Group all button.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -293,7 +296,7 @@
         <Width>41</Width>
         <Height>14</Height>
       </ItemDimensions>
-      <Notes>Some sort of play button</Notes>
+      <Notes>Right arrow/Play button (unused?).</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -321,7 +324,7 @@
         <Width>30</Width>
         <Height>14</Height>
       </ItemDimensions>
-      <Notes>View stack button</Notes>
+      <Notes>View stack button.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -349,7 +352,7 @@
         <Width>25</Width>
         <Height>25</Height>
       </ItemDimensions>
-      <Notes>Fancy checkboxes</Notes>
+      <Notes>Fancy checkboxes (trait selection, diplomatic offers).</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -369,7 +372,7 @@
         <Width>25</Width>
         <Height>25</Height>
       </ItemDimensions>
-      <Notes>Sentry button</Notes>
+      <Notes>Sentry button.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -397,7 +400,7 @@
         <Width>25</Width>
         <Height>25</Height>
       </ItemDimensions>
-      <Notes>Skip unit's turn</Notes>
+      <Notes>Skip unit's turn.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -425,7 +428,7 @@
         <Width>25</Width>
         <Height>25</Height>
       </ItemDimensions>
-      <Notes>Push unit to back of queue</Notes>
+      <Notes>Push unit to back of queue.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -453,7 +456,7 @@
         <Width>25</Width>
         <Height>25</Height>
       </ItemDimensions>
-      <Notes>Execute move order</Notes>
+      <Notes>Execute move order.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -481,7 +484,7 @@
         <Width>23</Width>
         <Height>12</Height>
       </ItemDimensions>
-      <Notes>Experience medals</Notes>
+      <Notes>Experience medals.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -501,7 +504,7 @@
         <Width>15</Width>
         <Height>13</Height>
       </ItemDimensions>
-      <Notes>Taxes hearts</Notes>
+      <Notes>Taxes hearts.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -521,7 +524,7 @@
         <Width>27</Width>
         <Height>27</Height>
       </ItemDimensions>
-      <Notes>League Embargo icons</Notes>
+      <Notes>League Trade Embargo icons.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -541,7 +544,7 @@
         <Width>15</Width>
         <Height>13</Height>
       </ItemDimensions>
-      <Notes>Loyalty icon</Notes>
+      <Notes>Loyalty icon.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -573,7 +576,7 @@
         <Width>54</Width>
         <Height>50</Height>
       </ItemDimensions>
-      <Notes>End Turn Hourglass</Notes>
+      <Notes>End Turn Hourglass.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -597,7 +600,7 @@
         <Width>32</Width>
         <Height>32</Height>
       </ItemDimensions>
-      <Notes>Planet animations</Notes>
+      <Notes>Starmap planets animations.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1121,7 +1124,7 @@
         <Width>32</Width>
         <Height>32</Height>
       </ItemDimensions>
-      <Notes>Units Icons</Notes>
+      <Notes>Units Icons (chits).</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1501,7 +1504,7 @@
         <Width>120</Width>
         <Height>123</Height>
       </ItemDimensions>
-      <Notes>Imperial Eye factions banners</Notes>
+      <Notes>Imperial Eye factions banners.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1537,7 +1540,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
-      <Notes>Eye banner</Notes>
+      <Notes>Imperial Eye banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1553,7 +1556,7 @@
         <Width>29</Width>
         <Height>32</Height>
       </ItemDimensions>
-      <Notes>Explosion Animation</Notes>
+      <Notes>Explosion Animation.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1597,7 +1600,7 @@
         <Width>40</Width>
         <Height>40</Height>
       </ItemDimensions>
-      <Notes>Flag overlaid on surrendered units in combat.</Notes>
+      <Notes>Flag overlaid on units surrendering in combat.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1613,7 +1616,7 @@
         <Width>120</Width>
         <Height>123</Height>
       </ItemDimensions>
-      <Notes>Imperial Fleet factions banners</Notes>
+      <Notes>Imperial Fleet factions banners.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1649,7 +1652,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
-      <Notes>Fleet banner</Notes>
+      <Notes>Imperial Fleet banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1665,7 +1668,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
-      <Notes>Li-Halan banner</Notes>
+      <Notes>Li-Halan banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1681,7 +1684,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
-      <Notes>The Hazat banner</Notes>
+      <Notes>The Hazat banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1697,7 +1700,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
-      <Notes>Decados banner</Notes>
+      <Notes>Decados banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1713,7 +1716,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
-      <Notes>Hawkwood banner</Notes>
+      <Notes>Hawkwood banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1729,7 +1732,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
-      <Notes>Al-Malik banner</Notes>
+      <Notes>Al-Malik banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1745,7 +1748,7 @@
         <Width>34</Width>
         <Height>34</Height>
       </ItemDimensions>
-      <Notes>Jumpgate Animation</Notes>
+      <Notes>Jumpgate Animation.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1785,7 +1788,7 @@
         <Width>48</Width>
         <Height>64</Height>
       </ItemDimensions>
-      <Notes>Computer player icon (new game setup)</Notes>
+      <Notes>Computer player icon (new game setup).</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1801,7 +1804,7 @@
         <Width>48</Width>
         <Height>64</Height>
       </ItemDimensions>
-      <Notes>Human player icon (new game setup)</Notes>
+      <Notes>Human player icon (new game setup).</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1817,7 +1820,7 @@
         <Width>24</Width>
         <Height>9</Height>
       </ItemDimensions>
-      <Notes>Cargo pod icon</Notes>
+      <Notes>Cargo pod icon (chit).</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1833,7 +1836,7 @@
         <Width>250</Width>
         <Height>200</Height>
       </ItemDimensions>
-      <Notes>House leaders portraits</Notes>
+      <Notes>House leaders portraits.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1905,7 +1908,7 @@
         <Width>250</Width>
         <Height>200</Height>
       </ItemDimensions>
-      <Notes>Church leaders portraits</Notes>
+      <Notes>Church leaders portraits.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1945,7 +1948,7 @@
         <Width>250</Width>
         <Height>200</Height>
       </ItemDimensions>
-      <Notes>League leader portrait</Notes>
+      <Notes>League leader portrait.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1961,7 +1964,7 @@
         <Width>250</Width>
         <Height>200</Height>
       </ItemDimensions>
-      <Notes>Advisor portrait</Notes>
+      <Notes>Advisor portrait.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -1977,7 +1980,7 @@
         <Width>250</Width>
         <Height>200</Height>
       </ItemDimensions>
-      <Notes>Vau portrait</Notes>
+      <Notes>Vau portrait.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -2077,7 +2080,7 @@
         <Width>5</Width>
         <Height>6</Height>
       </ItemDimensions>
-      <Notes>Unknown shield.</Notes>
+      <Notes>Unused? shield.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -2109,7 +2112,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
-      <Notes>Stigmata Garrison banner</Notes>
+      <Notes>Stigmata Garrison banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -2161,7 +2164,7 @@
         <Width>100</Width>
         <Height>100</Height>
       </ItemDimensions>
-      <Notes>Symbiots banner</Notes>
+      <Notes>Symbiots banner.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -2177,7 +2180,7 @@
         <Width>48</Width>
         <Height>40</Height>
       </ItemDimensions>
-      <Notes>Hexagonal shield overlay</Notes>
+      <Notes>Shield tile overlay.</Notes>
       <Items>
         <Item>
           <Index>0</Index>
@@ -3444,8 +3447,7 @@
         <Width>48</Width>
         <Height>40</Height>
       </ItemDimensions>
-      <Notes>
-        Hexagonal terrain tiles for CITY planets.
+      <Notes>Hexagonal terrain tiles for CITY planets.
         The item names denote which sides of the hexagon link with neighbouring terrain. 
         0 indicates an empty side, 1 indicates a link.
         For Deltas, 2 indicates a river link.
@@ -3997,8 +3999,7 @@
         <Width>48</Width>
         <Height>40</Height>
       </ItemDimensions>
-      <Notes>
-        Hexagonal terrain tiles for ICE planets.
+      <Notes>Hexagonal terrain tiles for ICE planets.
         The item names denote which sides of the hexagon link with neighbouring terrain. 
         0 indicates an empty side, 1 indicates a link.
         For Deltas, 2 indicates a river link.
@@ -4550,8 +4551,7 @@
         <Width>48</Width>
         <Height>40</Height>
       </ItemDimensions>
-      <Notes>
-        Hexagonal terrain tiles for JUNGLE planets.
+      <Notes>Hexagonal terrain tiles for JUNGLE planets.
         The item names denote which sides of the hexagon link with neighbouring terrain. 
         0 indicates an empty side, 1 indicates a link.
         For Deltas, 2 indicates a river link.
@@ -5103,8 +5103,7 @@
         <Width>48</Width>
         <Height>40</Height>
       </ItemDimensions>
-      <Notes>
-        Hexagonal terrain tiles for BARREN planets.
+      <Notes>Hexagonal terrain tiles for BARREN planets.
         The item names denote which sides of the hexagon link with neighbouring terrain. 
         0 indicates an empty side, 1 indicates a link.
         For Deltas, 2 indicates a river link.
@@ -5656,7 +5655,7 @@
         <Width>20</Width>
         <Height>31</Height>
       </ItemDimensions>
-      <Notes>Link between transport and carrier unit</Notes>
+      <Notes>Link between transport and carrier unit in the group info screen.</Notes>
       <Items>
         <Item>
           <Index>0</Index>

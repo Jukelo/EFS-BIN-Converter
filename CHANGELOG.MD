@@ -1,4 +1,14 @@
-###### v0.2.1 2023-11-09
+###### v0.3.0 2024-03-24
+
+* Added support for importing .BMP and .PNG files with pixel formats other than 8-bit. Not all options have been tested, expect trouble. Compression down to 256-colors is slower and basic (simple RGB distance), so it is still recommended to stick to the game's palette and use indexed colors images.
+	Note that 8-bit images do not go through any compression, and their color map is ignored entirely, only indexes are copied.
+* Changed Offset field in the import table to shift items by whole item lengths rather than bytes. #20
+* Added parser for custom palettes. A valid palette file in the same directory as the executable will override the tool's hardcoded one. Valid files are Gimp `.GPL` files, JASC-PAL `.PAL` files, Gimp `.TXT` exports, as well as `.BMP` and `.PNG` files. #21
+	Note that this has no effect on the color palette used by the game, it is mainly aimed at better maintainability but can have niche artist workflow benefits.
+* Fixed crash upon importing image with unrecognized name.
+
+---
+###### v0.2.1 2023-11-15
 
 * Fixed changing preset would fail to re-run file recognition. Changing preset will now update imported items names and offset according to the new preset. Offsets are only adjusted if set to zero. #2
 * Fixed exported images and saved ```.bin``` files are now sized according to the maximum item index defined in ```Presets.xml``` instead of the number of items. 

@@ -1,11 +1,3 @@
-###### v0.3.1 2024-03-25
-
-* Added support for exporting to indexed colors PNG. The dropdown menu allows choosing a file format for split exports. This was supposed to be part of the 0.3.0 build...
-* Merged BMP and PNG into the same filter in the import image dialog (there was no reason for them to be separate).
-* Fixed imported items sometimes not being cleared from the preview area when using the 'Remove all entries' button. #22
-* Fixed BIN contents layer being lost after using 'Remove all entries' button and changing preset.
-
----
 ###### v0.3.0 2024-03-24
 
 * Added support for importing .BMP and .PNG files with pixel formats other than 8-bit. Not all options have been tested, expect trouble. Compression down to 256-colors is slower and basic (simple RGB distance), so it is still recommended to stick to the game's palette and use indexed colors images.

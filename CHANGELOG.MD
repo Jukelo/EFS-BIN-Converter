@@ -1,3 +1,7 @@
+###### v0.3.2 2024-04-04
+
+* Fixed Corrupted buffer when using the Remove all entries button after importing an image.
+
 ###### v0.3.1 2024-04-04
 
 * Added support for exporting to indexed colors PNG. The dropdown menu allows choosing a file format for split exports. This was supposed to be part of the 0.3.0 build...

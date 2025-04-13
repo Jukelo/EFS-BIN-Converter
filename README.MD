@@ -17,7 +17,7 @@ This is a **.NET 4.7.2** program for **Windows**.
 ---	
 ###### Exporting to BMP
 
- The **Export Image** tab allows you to extract graphical elements (*items*) contained in the game's ```.bin``` files and save them as ```.bmp``` files[^1]; 
+ The **Export Image** tab allows you to extract graphical elements (*items*) contained in the game's ```.bin``` files and save them as ```.bmp``` or ```.png``` files; 
 
 1.  Load one of the game's ```.bin``` files using the **Select file** button. Those are located in the BIN folder of your game's install.
 2.  Select a destination file for your image with the **Export to BMP** button.
@@ -57,4 +57,4 @@ If the importer fails to recognize a ```.bmp``` file's identifier, it will posit
 
 
 [^1]: The only supported format is 256 color BMP, indexed against the game's color palette. 
-[^2]: You should probably not save this directly in your game's BIN folder. Use a game mod instead.
+[^2]: You should probably not save this directly in your game's BIN folder. Use a mod instead.

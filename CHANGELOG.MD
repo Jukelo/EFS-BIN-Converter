@@ -1,14 +1,3 @@
-###### v0.4.0 2022-04-12
-
-* Added search box to filter items list by names in the export tab.
-* Included optional palette ```EFS-Gimp-Fix.gpl``` with distinctive and separated colours for indices 10-13 (the 'blinking' blues). This is intended for use with GIMP, which cannot distinguish between colour map indices sharing the same colour values.
-	Rename it to palette.gpl (or export_palette.gpl) for the exporter to save images using this palette. 
-		This palette is only intended for GIMP use with indexed colour images exported from BIN files and/or converted back to BIN.
-		If you wish to create graphics imported directly into the game as BMPs and PNGs (as opposed to inserted back into a BIN file such as EFSUNITS), use the default palette instead to extract a base or template from a BIN file.
-* Fixed significant lag caused by splitting files with large number of items (looking at your EFSTILE).
-* Fixed 'Select folder' export dialog would not default to the last selected directoty but one level up.
-* Fixed palette in image format would read pixels in the wrong order. #30
-
 ###### v0.3.2 2024-04-04
 
 * Fixed Corrupted buffer when using the Remove all entries button after importing an image.
